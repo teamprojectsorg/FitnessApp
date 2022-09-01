@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FitnessApp</string>
+    <string name="image_content_description">Image</string>
+    <string name="sign_in_label">Sign In</string>
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="login_label">Login</string>
+    <string name="forgot_password_label">Forgot Password?</string>
+    <string name="create_account_label">Create Account here. Sign Up</string>
+</resources>
