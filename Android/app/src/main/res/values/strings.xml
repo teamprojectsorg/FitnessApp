@@ -7,7 +7,6 @@
     <string name="login_label">Login</string>
     <string name="forgot_password_label">Forgot Password?</string>
     <string name="create_account_label">Create Account here. Sign Up</string>
-    <string name="sign_up_label">Sign Up</string>
     <string name="repeat_password_label">Repeat Password</string>
     <string name="register_label">Register</string>
 </resources>
