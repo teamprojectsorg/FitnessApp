@@ -51,9 +51,8 @@
             android:hint="@string/password_label"
             android:inputType="textPassword"
             android:background="@color/white"
-            android:textColor="@color/black"/>
-        android:hint="password"
-        android:padding="20dp"/>
+            android:textColor="@color/black"
+            android:padding="20dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,8 +70,8 @@
             android:hint="@string/repeat_password_label"
             android:background="@color/white"
             android:inputType="textPassword"
-            android:textColor="@color/black"/>
-        android:padding="20dp"/>
+            android:textColor="@color/black"
+            android:padding="20dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,5 +85,4 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#7adb53"
         android:layout_margin="50dp"/>
-
 </LinearLayout>
