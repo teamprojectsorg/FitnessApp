@@ -1,6 +1,6 @@
 package com.fitnessapp.models;
 
-public class LoginSignUpModel {
+public class LoginSignUpModel extends ApiResponseModel {
     private String username;
     private String password;
 
