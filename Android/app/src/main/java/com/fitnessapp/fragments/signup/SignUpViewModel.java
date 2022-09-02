@@ -1,4 +1,4 @@
-package com.fitnessapp.activities.signup;
+package com.fitnessapp.fragments.signup;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

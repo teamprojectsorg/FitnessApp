@@ -1,4 +1,4 @@
-package com.fitnessapp.activities.login;
+package com.fitnessapp.fragments.login;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
