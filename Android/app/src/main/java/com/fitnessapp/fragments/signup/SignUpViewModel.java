@@ -1,4 +1,4 @@
-package com.fitnessapp.activities.login;
+package com.fitnessapp.fragments.signup;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,18 +8,19 @@ import com.fitnessapp.repositories.PreferencesRepository;
 
 import javax.inject.Inject;
 
-public class LoginViewModel extends ViewModel {
-    public MutableLiveData<LoginSignUpModel> loginMutableLive = new MutableLiveData<>();
+public class SignUpViewModel extends ViewModel {
+    public MutableLiveData<LoginSignUpModel> signUpMutableLive = new MutableLiveData<>();
 
     @Inject
     private PreferencesRepository preferencesRepository;
 
-    public LoginViewModel()
+    public SignUpViewModel()
     {
-        loginMutableLive.setValue(new LoginSignUpModel());
+        signUpMutableLive.setValue(new LoginSignUpModel());
     }
 
-    public void onButtonClick()
+    public void onRegisterButtonClick()
     {
+
     }
 }

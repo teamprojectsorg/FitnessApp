@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.signup.SignUpActivity">
-
-    <data class="SignUpBinder">
-        <variable
-            name="ViewModel"
-            type="com.fitnessapp.activities.signup.SignUpViewModel" />
-    </data>
-  
-  <LinearLayout
+    tools:context="com.fitnessapp.fragments.signup.SignUpFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -33,15 +25,15 @@
         android:textColorHint="@color/black"
         android:padding="10dp">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:background="@color/white"
-        android:hint="@string/username_label"
-        android:inputType="text"
-        android:padding="20dp"
-        android:textColor="@color/black"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:background="@color/white"
+            android:hint="@string/username_label"
+            android:inputType="text"
+            android:padding="20dp"
+            android:textColor="@color/black"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,8 +51,7 @@
             android:hint="@string/password_label"
             android:inputType="textPassword"
             android:background="@color/white"
-            android:textColor="@color/black"/>
-            android:hint="password"
+            android:textColor="@color/black"
             android:padding="20dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -79,12 +70,13 @@
             android:hint="@string/repeat_password_label"
             android:background="@color/white"
             android:inputType="textPassword"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
             android:padding="20dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:text="@string/register_label"
@@ -93,6 +85,4 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#7adb53"
         android:layout_margin="50dp"/>
-
 </LinearLayout>
-</layout>
