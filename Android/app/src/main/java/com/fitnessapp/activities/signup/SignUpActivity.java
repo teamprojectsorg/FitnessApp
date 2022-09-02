@@ -1,15 +1,24 @@
 package com.fitnessapp.activities.signup;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.fitnessapp.R;
+import com.fitnessapp.activities.login.LoginActivity;
+import com.fitnessapp.activities.login.LoginViewModel;
+import com.fitnessapp.databinding.LoginBinder;
+import com.fitnessapp.databinding.SignUpBinder;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpActivity extends AppCompatActivity {
+    private SignUpBinder binding;
+    private SignUpViewModel viewModel;
 
     private TextInputLayout textInputPassword;
     private TextInputLayout textInputRepeatPassword;
@@ -19,7 +28,10 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
+        viewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
+        binding.setLifecycleOwner(this);
+        binding.setViewModel(viewModel);
 
         textInputUsername = findViewById(R.id.username);
         textInputPassword = findViewById(R.id.password);
@@ -59,6 +71,12 @@ public class SignUpActivity extends AppCompatActivity {
         if(!validateUsername() | !validatePassword() | !validateRepeatPass()) {
             return;
         }
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+
+        viewModel.onRegisterButtonClick();
+
         String input = "Username: " + textInputUsername.getEditText().getText().toString();
         input += "\n";
         input += "Password: " + textInputUsername.getEditText().getText().toString();

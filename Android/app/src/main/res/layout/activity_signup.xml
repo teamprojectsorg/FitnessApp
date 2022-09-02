@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.signup.SignUpActivity">
+
+    <data class="SignUpBinder">
+        <variable
+            name="ViewModel"
+            type="com.fitnessapp.activities.signup.SignUpViewModel" />
+    </data>
+  
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    tools:context=".activities.signup.SignUpActivity">
+    android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/sign_up_label"
+        android:text="@string/sign_in_label"
         android:layout_margin="70dp"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -88,3 +95,4 @@
         android:layout_margin="50dp"/>
 
 </LinearLayout>
+</layout>
