@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#234175"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".Sign_Up">
+    tools:context=".activities.signup.SignUpActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Sign Up"
+        android:text="@string/sign_up_label"
         android:layout_margin="70dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="30dp" />
 
 
@@ -30,7 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
-        android:hint="username"
+        android:background="@color/white"
+        android:hint="@string/username_label"
         android:inputType="text"
         android:padding="20dp"
         android:textColor="@color/black"/>
@@ -48,10 +49,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:hint="password"
+            android:hint="@string/password_label"
             android:inputType="textPassword"
-            android:padding="20dp"
-            android:textColor="@color/white"/>
+            android:background="@color/white"
+            android:textColor="@color/black"/>
+            android:hint="password"
+            android:padding="20dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,18 +69,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:hint="Repeat Password"
+            android:hint="@string/repeat_password_label"
+            android:background="@color/white"
             android:inputType="textPassword"
-            android:padding="20dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
+            android:padding="20dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register"
+        android:layout_height="60sp"
+        android:text="@string/register_label"
         android:onClick="register"
+        android:textSize="20sp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#7adb53"
         android:layout_margin="50dp"/>
