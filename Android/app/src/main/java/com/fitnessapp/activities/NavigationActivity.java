@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import com.fitnessapp.R;
 import com.fitnessapp.fragments.home.HomeFragment;
+import com.fitnessapp.fragments.profile.ProfileFragment;
+import com.fitnessapp.fragments.progress.ProgressFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NavigationActivity extends AppCompatActivity {
@@ -33,14 +35,12 @@ public class NavigationActivity extends AppCompatActivity {
                     break;
 
                 case R.id.nav_favorites:
-                    return true;
-                    //selectedFragment = new FavoritesFragment();
-                    //break;
+                    selectedFragment = new ProgressFragment();
+                    break;
 
                 case R.id.nav_profile:
-                    return true;
-                    //selectedFragment = new ProfileFragment();
-                    //break;
+                    selectedFragment = new ProfileFragment();
+                    break;
             }
 
             getSupportFragmentManager()
