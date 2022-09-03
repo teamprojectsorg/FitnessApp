@@ -1,9 +1,13 @@
 package com.fitnessapp;
 
 import android.app.Application;
+import android.content.Context;
 
-import dagger.hilt.android.HiltAndroidApp;
-
-@HiltAndroidApp
 public class MainApplication extends Application {
+    public static Context applicationContext;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        applicationContext = this;
+    }
 }

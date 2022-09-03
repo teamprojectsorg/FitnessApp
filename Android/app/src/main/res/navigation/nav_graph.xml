@@ -3,17 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/SignUpFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/SignUpFragment"
         android:name="com.fitnessapp.pages.login_signup.fragments.SignUpFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
-        <action
-            android:id="@+id/action_SignUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_signup" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.fitnessapp.pages.login_signup.fragments.LoginFragment"
@@ -21,7 +17,12 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@+id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_SignUpFragment"
+            app:destination="@id/SignUpFragment" />
 
     </fragment>
     <fragment
@@ -29,9 +30,5 @@
         android:name="com.fitnessapp.pages.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_pop"
-            app:popUpTo="@id/SignUpFragment"
-            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

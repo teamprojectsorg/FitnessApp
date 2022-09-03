@@ -1,4 +1,4 @@
-package com.fitnessapp.utils.network_utils;
+package com.fitnessapp.network;
 
 public class NetworkResult<T>{
     private T data;
