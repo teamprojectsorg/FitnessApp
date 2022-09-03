@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 
 import com.fitnessapp.R;
-import com.fitnessapp.fragments.home.HomeFragment;
-import com.fitnessapp.fragments.profile.ProfileFragment;
-import com.fitnessapp.fragments.progress.ProgressFragment;
+import com.fitnessapp.pages.home.HomeFragment;
+import com.fitnessapp.pages.profile.ProfileFragment;
+import com.fitnessapp.pages.progress.ProgressFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NavigationActivity extends AppCompatActivity {

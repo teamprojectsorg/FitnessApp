@@ -1,4 +1,4 @@
-package com.fitnessapp.fragments.progress;
+package com.fitnessapp.pages.progress;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package com.fitnessapp.fragments.profile;
+package com.fitnessapp.pages.profile;
 
 import android.os.Bundle;
 

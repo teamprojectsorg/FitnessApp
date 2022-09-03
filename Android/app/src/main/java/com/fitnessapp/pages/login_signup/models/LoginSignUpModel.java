@@ -1,8 +1,14 @@
-package com.fitnessapp.models;
+package com.fitnessapp.pages.login_signup.models;
 
-public class LoginSignUpModel extends ApiResponseModel {
+public class LoginSignUpModel{
     private String username;
     private String password;
+    public LoginSignUpModel(){}
+
+    public LoginSignUpModel(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;
