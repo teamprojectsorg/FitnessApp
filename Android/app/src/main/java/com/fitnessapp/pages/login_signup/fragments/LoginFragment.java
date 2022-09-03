@@ -103,7 +103,9 @@ public class LoginFragment extends Fragment {
         }
         LoginSignUpModel logInModel = new LoginSignUpModel(getUsername(),
                 getPassword());
-        loginViewModel.logIn(logInModel);
+        //TODO To be handeled
+        //loginViewModel.logIn(logInModel);
+        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_homeFragment);
     }
 
     private String getUsername()

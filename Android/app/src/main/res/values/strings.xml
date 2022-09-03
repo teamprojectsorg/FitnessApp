@@ -9,4 +9,9 @@
     <string name="create_account_label">Create Account here. Sign Up</string>
     <string name="repeat_password_label">Repeat Password</string>
     <string name="register_label">Register</string>
+    <string name="homepage_label">Home Page</string>
+    <string name="alcohol_label">Alcohol</string>
+    <string name="goals_label">Goals</string>
+    <string name="exercises_label">Exercise</string>
+    <string name="future_goals_label">Future Goals</string>
 </resources>
