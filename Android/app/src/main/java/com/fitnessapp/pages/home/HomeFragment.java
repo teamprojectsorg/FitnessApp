@@ -5,12 +5,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fitnessapp.R;
 import com.fitnessapp.databinding.FragmentHomeBinding;
 import com.jjoe64.graphview.GraphView;
 import com.ramotion.circlemenu.CircleMenuView;

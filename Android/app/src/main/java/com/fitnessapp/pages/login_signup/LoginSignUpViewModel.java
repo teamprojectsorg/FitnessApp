@@ -5,22 +5,20 @@ import androidx.lifecycle.ViewModel;
 
 import com.fitnessapp.pages.login_signup.models.LoginSignUpModel;
 import com.fitnessapp.pages.login_signup.models.LoginSignUpResponseModel;
-import com.fitnessapp.utils.network_utils.NetworkResult;
+import com.fitnessapp.repositories.SharedPreferencesRepository;
+import com.fitnessapp.network.NetworkResult;
 
-import javax.inject.Inject;
-
-import dagger.hilt.android.lifecycle.HiltViewModel;
-
-@HiltViewModel
 public class LoginSignUpViewModel extends ViewModel {
-    private LoginSignUpRepository loginSignUpRepository;
+    public LoginSignUpRepository loginSignUpRepository;
+    public SharedPreferencesRepository sharedPreferencesRepository;
 
-    public LiveData<NetworkResult<LoginSignUpResponseModel>> liveResponse = loginSignUpRepository.getLiveResponse();
+    public LiveData<NetworkResult<LoginSignUpResponseModel>> liveResponse;
 
-    @Inject
-    public LoginSignUpViewModel(LoginSignUpRepository loginSignUpRepository)
+    public LoginSignUpViewModel()
     {
-        this.loginSignUpRepository = loginSignUpRepository;
+        this.loginSignUpRepository = new LoginSignUpRepository();
+        this.liveResponse = loginSignUpRepository.getLiveResponse();
+        this.sharedPreferencesRepository = new SharedPreferencesRepository();
     }
 
     public void signUp(LoginSignUpModel signUpModel)
@@ -31,5 +29,10 @@ public class LoginSignUpViewModel extends ViewModel {
     public void logIn(LoginSignUpModel logInModel)
     {
         loginSignUpRepository.logIn(logInModel);
+    }
+
+    public void setupLoggedIn()
+    {
+        sharedPreferencesRepository.setLoggedIn(true);
     }
 }
