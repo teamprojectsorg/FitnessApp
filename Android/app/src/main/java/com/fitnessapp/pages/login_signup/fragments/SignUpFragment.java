@@ -116,7 +116,9 @@ public class SignUpFragment extends Fragment {
         }
         LoginSignUpModel signUpModel = new LoginSignUpModel(getUsername(),
                                                             getPassword());
-        signUpViewModel.signUp(signUpModel);
+        //TODO To be handeled
+        //signUpViewModel.signUp(signUpModel);
+        Navigation.findNavController(v).navigate(R.id.action_SignUpFragment_to_loginFragment);
     }
 
     private String getUsername()
