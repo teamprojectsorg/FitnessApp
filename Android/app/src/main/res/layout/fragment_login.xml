@@ -10,6 +10,7 @@
             android:layout_width="50sp"
             android:layout_height="50sp"
             android:id="@+id/progress_circular"
+            android:visibility="invisible"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"></ProgressBar>
         <ImageView

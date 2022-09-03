@@ -1,6 +1,6 @@
-package com.fitnessapp.utils.network_utils.results;
+package com.fitnessapp.network.results;
 
-import com.fitnessapp.utils.network_utils.NetworkResult;
+import com.fitnessapp.network.NetworkResult;
 
 public class LoadingResult<T> extends NetworkResult<T>
 {
