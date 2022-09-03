@@ -1,88 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.fitnessapp.fragments.signup.SignUpFragment"
+    tools:context="com.fitnessapp.pages.login_signup.fragments.SignUpFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/sign_in_label"
-        android:layout_margin="70dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="30dp" />
+    <ProgressBar
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:id="@+id/progress_circular"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"></ProgressBar>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/black"
-        android:padding="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:background="@color/white"
-            android:hint="@string/username_label"
-            android:inputType="text"
-            android:padding="20dp"
-            android:textColor="@color/black"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/black"
-        android:padding="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:hint="@string/password_label"
-            android:inputType="textPassword"
-            android:background="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/sign_in_label"
+            android:layout_margin="70dp"
             android:textColor="@color/black"
-            android:padding="20dp"/>
+            android:textStyle="bold"
+            android:textSize="30sp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/repeatpass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/black"
-        android:padding="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:hint="@string/repeat_password_label"
-            android:background="@color/white"
-            android:inputType="textPassword"
-            android:textColor="@color/black"
-            android:padding="20dp"/>
+            android:textColorHint="@color/black"
+            android:padding="10dp">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:background="@color/white"
+                android:hint="@string/username_label"
+                android:inputType="text"
+                android:padding="20dp"
+                android:textColor="@color/black"/>
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
-        android:layout_height="60sp"
-        android:text="@string/register_label"
-        android:onClick="register"
-        android:textSize="20sp"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="#7adb53"
-        android:layout_margin="50dp"/>
-</LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:padding="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:hint="@string/password_label"
+                android:inputType="textPassword"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:padding="20dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/repeatpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:padding="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:hint="@string/repeat_password_label"
+                android:background="@color/white"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:padding="20dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:text="@string/register_label"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#7adb53"
+            android:layout_margin="50dp"/>
+    </LinearLayout>
+</RelativeLayout>
