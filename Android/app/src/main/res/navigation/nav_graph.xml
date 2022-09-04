@@ -30,5 +30,21 @@
         android:name="com.fitnessapp.pages.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_captureFragment"
+            app:destination="@id/captureFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.fitnessapp.pages.edit_profile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/captureFragment"
+        android:name="com.fitnessapp.pages.capture.CaptureFragment"
+        android:label="fragment_capture"
+        tools:layout="@layout/fragment_capture" />
 </navigation>
