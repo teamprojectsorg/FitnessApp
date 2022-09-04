@@ -14,4 +14,9 @@
     <string name="goals_label">Goals</string>
     <string name="exercises_label">Exercise</string>
     <string name="future_goals_label">Future Goals</string>
+    <string name="capturizer_label">Capturizer</string>
+    <string name="enter_intake_value_label">Enter Intake Value:</string>
+    <string name="in_ml_label">in ML</string>
+    <string name="what_intake_label">What did you Intake?</string>
+    <string name="percent_alcohol_label">% of Alcohol</string>
 </resources>
