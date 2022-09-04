@@ -18,15 +18,16 @@
             android:contentDescription="@string/image_content_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_marginTop="20dp"
+            android:src="@drawable/goals_icon"
+            android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/appname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
+            android:text="@string/app_name"
             android:layout_below="@+id/appsplash"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -38,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_in_label"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:layout_below="@+id/appname"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -63,8 +64,8 @@
         android:hint="@string/username_label"
         android:inputType="text"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
         <EditText
             android:autofillHints="password"
@@ -83,19 +84,16 @@
             android:hint="@string/password_label"
             android:inputType="textPassword"
             android:padding="20dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
             android:layout_below="@id/password"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="50sp"
             android:backgroundTint="#7adb53"
             android:padding="10dp"
             android:text="@string/login_label"
@@ -106,7 +104,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/forgotpass"
             android:layout_below="@id/btnLogin"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="@string/forgot_password_label"
             android:layout_centerHorizontal="true"
             android:layout_margin="5dp"/>
@@ -122,5 +120,5 @@
             android:gravity="bottom"
             android:layout_marginBottom="20dp"
             android:text="@string/create_account_label"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
     </RelativeLayout>
