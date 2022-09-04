@@ -9,11 +9,9 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface LoginSignUpAPI {
-    //TODO Url Mapping
     @POST("auth/signup")
     Call<LoginSignUpResponseModel> signUp(@Body LoginSignUpModel signUpModel);
 
-    //TODO Url Mapping
     @POST("auth/login")
     Call<LoginSignUpResponseModel> logIn(@Body LoginSignUpModel logInModel);
 }

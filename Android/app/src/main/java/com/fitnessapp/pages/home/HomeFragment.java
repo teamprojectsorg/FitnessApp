@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onButtonClickAnimationStart(@NonNull CircleMenuView view, int index) {
                 Log.d("D", "onButtonClickAnimationStart|index: " + index);
+                swithFragments(index);
             }
 
             @Override
@@ -91,6 +92,28 @@ public class HomeFragment extends Fragment {
                 Log.d("D", "onButtonLongClickAnimationEnd|index: " + buttonIndex);
             }
         });
+    }
+
+    private void swithFragments(int i)
+    {
+        NavController nc = Navigation.findNavController(viewBinding.getRoot());
+        switch(i)
+        {
+            case 0:
+                break;
+            case 1:
+                nc.navigate(R.id.action_homeFragment_to_profileFragment);
+                break;
+            case 2:
+                nc.navigate(R.id.action_homeFragment_to_progressFragment);
+                break;
+            case 3:
+                nc.navigate(R.id.action_homeFragment_to_editProfileFragment);
+                break;
+            case 4:
+                nc.navigate(R.id.action_homeFragment_to_captureFragment);
+                break;
+        }
     }
 
     private void initAxisTiles()
