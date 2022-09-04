@@ -9,6 +9,7 @@ import com.fitnessapp.MainApplication;
 public class SharedPreferencesRepository {
     private String DEFAULT_FILE_NAME = "default_shared_preference";
     private String LOGGED_IN = "logged_in";
+    private String TOKEN = "token";
 
     private SharedPreferences sharedPreference;
     public SharedPreferencesRepository()
@@ -24,6 +25,17 @@ public class SharedPreferencesRepository {
     {
         SharedPreferences.Editor editor = sharedPreference.edit();
         editor.putBoolean(LOGGED_IN,status);
+        editor.apply();
+    }
+
+    public String getToken()
+    {
+        return sharedPreference.getString(TOKEN,"");
+    }
+    public void setToken(String token)
+    {
+        SharedPreferences.Editor editor = sharedPreference.edit();
+        editor.putString(TOKEN,token);
         editor.apply();
     }
 }

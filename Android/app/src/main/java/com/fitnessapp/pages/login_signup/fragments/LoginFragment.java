@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -50,7 +49,7 @@ public class LoginFragment extends Fragment {
 
     private void bindObserver(View view)
     {
-        loginViewModel.liveResponse.observe(getViewLifecycleOwner(),
+        loginViewModel.loginResponse.observe(getViewLifecycleOwner(),
                 (it) ->
                 {
                     viewBinding.progressCircular.setVisibility(View.INVISIBLE);

@@ -3,8 +3,9 @@ package com.fitnessapp.pages.login_signup;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.fitnessapp.pages.login_signup.models.LoginResponseModel;
 import com.fitnessapp.pages.login_signup.models.LoginSignUpModel;
-import com.fitnessapp.pages.login_signup.models.LoginSignUpResponseModel;
+import com.fitnessapp.pages.login_signup.models.SignUpResponseModel;
 import com.fitnessapp.repositories.SharedPreferencesRepository;
 import com.fitnessapp.network.NetworkResult;
 
@@ -12,12 +13,14 @@ public class LoginSignUpViewModel extends ViewModel {
     public LoginSignUpRepository loginSignUpRepository;
     public SharedPreferencesRepository sharedPreferencesRepository;
 
-    public LiveData<NetworkResult<LoginSignUpResponseModel>> liveResponse;
+    public LiveData<NetworkResult<SignUpResponseModel>> signupResponse;
+    public LiveData<NetworkResult<LoginResponseModel>> loginResponse;
 
     public LoginSignUpViewModel()
     {
         this.loginSignUpRepository = new LoginSignUpRepository();
-        this.liveResponse = loginSignUpRepository.getLiveResponse();
+        this.signupResponse = loginSignUpRepository.getSignupResponse();
+        this.loginResponse = loginSignUpRepository.getLoginResponse();
         this.sharedPreferencesRepository = new SharedPreferencesRepository();
     }
 
@@ -33,6 +36,8 @@ public class LoginSignUpViewModel extends ViewModel {
 
     public void setupLoggedIn()
     {
+        String token = loginResponse.getValue().getData().data.accessToken;
+        sharedPreferencesRepository.setToken(token);
         sharedPreferencesRepository.setLoggedIn(true);
     }
 }

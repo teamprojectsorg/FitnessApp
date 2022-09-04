@@ -46,7 +46,7 @@ public class SignUpFragment extends Fragment {
 
     private void bindObserver(View view)
     {
-        signUpViewModel.liveResponse.observe(getViewLifecycleOwner(),
+        signUpViewModel.signupResponse.observe(getViewLifecycleOwner(),
                 (it) ->
                 {
                     viewBinding.sprogressCircular.setVisibility(View.INVISIBLE);
