@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pages.progress.ProgressFragment">
-
+    tools:context=".pages.edit_profile.EditProfileFragment">
+>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Progress Fragment" />
+        android:text="Edit profile fragment" />
 
 </FrameLayout>
