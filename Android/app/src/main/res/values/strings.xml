@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitnessApp</string>
+    <string name="app_name">Drink Manager</string>
     <string name="image_content_description">Image</string>
     <string name="sign_in_label">Sign In</string>
     <string name="username_label">Username</string>
