@@ -35,8 +35,14 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setListeners();
-        bindObserver(view);
+        if (loginViewModel.isLoggedIn)
+        {
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
+        }
+        else {
+            setListeners();
+            bindObserver(view);
+        }
     }
     private void setListeners()
     {
@@ -102,7 +108,9 @@ public class LoginFragment extends Fragment {
         }
         LoginSignUpModel logInModel = new LoginSignUpModel(getUsername(),
                 getPassword());
-        loginViewModel.logIn(logInModel);
+        //TODO Handle Testing
+        //loginViewModel.logIn(logInModel);
+        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_homeFragment);
     }
 
     private String getUsername()

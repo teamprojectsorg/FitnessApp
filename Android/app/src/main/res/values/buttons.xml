@@ -5,8 +5,8 @@
         <item>@drawable/ic_baseline_home_24</item>
         <item>@drawable/ic_baseline_person_outline_24</item>
         <item>@drawable/progress_btn</item>
-        <item>@drawable/setting_menu_icon</item>
-        <item>@drawable/ic_baseline_edit_calendar_24</item>
+        <item>@drawable/logout_icon</item>
+        <item>@drawable/img</item>
     </array>
 
     <!-- icon colors-->

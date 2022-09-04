@@ -23,7 +23,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginStart="90dp"
-            android:text="@string/capturizer_label"
+            android:text="Capture"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />

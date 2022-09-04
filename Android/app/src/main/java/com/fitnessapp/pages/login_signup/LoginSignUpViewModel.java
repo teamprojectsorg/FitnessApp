@@ -16,12 +16,15 @@ public class LoginSignUpViewModel extends ViewModel {
     public LiveData<NetworkResult<SignUpResponseModel>> signupResponse;
     public LiveData<NetworkResult<LoginResponseModel>> loginResponse;
 
+    public boolean isLoggedIn;
+
     public LoginSignUpViewModel()
     {
         this.loginSignUpRepository = new LoginSignUpRepository();
         this.signupResponse = loginSignUpRepository.getSignupResponse();
         this.loginResponse = loginSignUpRepository.getLoginResponse();
         this.sharedPreferencesRepository = new SharedPreferencesRepository();
+        isLoggedIn = sharedPreferencesRepository.getLoggedIn();
     }
 
     public void signUp(LoginSignUpModel signUpModel)

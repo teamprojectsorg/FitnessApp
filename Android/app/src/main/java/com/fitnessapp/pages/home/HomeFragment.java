@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.fitnessapp.R;
 import com.fitnessapp.databinding.FragmentHomeBinding;
+import com.fitnessapp.repositories.SharedPreferencesRepository;
 import com.jjoe64.graphview.GraphView;
 import com.ramotion.circlemenu.CircleMenuView;
 import com.jjoe64.graphview.GridLabelRenderer;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment {
         initGraph();
         initAxisTiles();
         initCircleMenu();
-
+        viewBinding.captureCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_captureFragment));
         return viewBinding.getRoot();
     }
 
@@ -108,10 +109,12 @@ public class HomeFragment extends Fragment {
                 nc.navigate(R.id.action_homeFragment_to_progressFragment);
                 break;
             case 3:
-                nc.navigate(R.id.action_homeFragment_to_editProfileFragment);
+                new SharedPreferencesRepository().setLoggedIn(false);
+                new SharedPreferencesRepository().setToken("");
+                nc.navigate(R.id.action_homeFragment_to_loginFragment);
                 break;
             case 4:
-                nc.navigate(R.id.action_homeFragment_to_captureFragment);
+                //nc.navigate(R.id.action_homeFragment_to_captureFragment);
                 break;
         }
     }
