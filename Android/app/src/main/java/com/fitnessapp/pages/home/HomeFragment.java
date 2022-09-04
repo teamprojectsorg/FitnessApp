@@ -18,6 +18,7 @@ import com.fitnessapp.R;
 import com.fitnessapp.databinding.FragmentHomeBinding;
 import com.fitnessapp.repositories.SharedPreferencesRepository;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.ramotion.circlemenu.CircleMenuView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LegendRenderer;
@@ -122,32 +123,41 @@ public class HomeFragment extends Fragment {
     private void initAxisTiles()
     {
         GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-        gridLabel.setHorizontalAxisTitle("No. of Males");
+        gridLabel.setVerticalAxisTitle("Intake(in ML)");
         gridLabel.setHorizontalAxisTitleTextSize(40);
-        gridLabel.setVerticalAxisTitleTextSize(40);
-        gridLabel.setVerticalAxisTitle("No. of Males");
     }
 
     private void initGraph()
     {
         //graph initializing
-        graphView = viewBinding.idGraphView;
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 3),
-                new DataPoint(2, 4),
-                new DataPoint(8, 2)
-        });
-        graphView.setTitle("Average Alcohol Intake of Males and Females ");
+        graphView=(GraphView) viewBinding.idGraphView;
+        //graphView = viewBinding.graph;
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint()) ;
+        graphView.addSeries(series);
+        series.setDrawValuesOnTop( true ) ;
+        series.setValuesOnTopColor( Color.RED ) ;
+        series.setSpacing( 40 ) ;
+        graphView.setTitle("Daily Intake");
 
         graphView.setTitleColor(Color.BLACK);
 
-        graphView.setTitleTextSize(30);
+        graphView.setTitleTextSize(50);
+    }
 
-        graphView.addSeries(series);
-        series.setColor(Color.BLUE);
-        series.setTitle("Males in ths");
-        graphView.getLegendRenderer().setVisible(true);
-        graphView.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+    private DataPoint[] getDataPoint() {
+        DataPoint[] dp = new DataPoint[]
+                {
+
+                        new DataPoint(0, 1),
+                        new DataPoint(1, 4),
+                        new DataPoint(2, 5),
+                        new DataPoint(3, 1),
+                        new DataPoint(4, 0),
+                        new DataPoint(5, 3),
+                        new DataPoint(6, 1),
+                        new DataPoint(7, 7),
+                        new DataPoint(8, 4)
+                };
+        return dp;
     }
 }

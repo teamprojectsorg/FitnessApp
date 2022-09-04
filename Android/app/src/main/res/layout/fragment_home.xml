@@ -35,7 +35,7 @@
                     android:columnCount="2">
                     <androidx.cardview.widget.CardView
                         android:id="@+id/captureCardView"
-                        android:layout_width="80sp"
+                        android:layout_width="75sp"
                         android:layout_height="200sp"
                         android:layout_row="0"
                         android:layout_rowWeight="1"
@@ -113,12 +113,18 @@
 
                 </GridLayout>
 
-                <com.jjoe64.graphview.GraphView
-                    android:id="@+id/idGraphView"
-                    android:layout_width="wrap_content"
-                    android:backgroundTint="#30ffffff"
-                    android:outlineSpotShadowColor="@color/black"
-                    android:layout_height="300sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp">
+                    <com.jjoe64.graphview.GraphView
+                        android:id="@+id/idGraphView"
+                        android:padding="5dp"
+                        android:backgroundTint="#30ffffff"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:layout_height="300sp"
+                        android:layout_width="450sp"/>
+                </LinearLayout>
 
                 <GridLayout
                     android:layout_width="match_parent"
