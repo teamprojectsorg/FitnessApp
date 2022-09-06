@@ -1,6 +1,6 @@
 package com.fitnessapp.models;
 
-public abstract class ApiResponse {
+public class ApiResponseModel {
     public boolean status;
     public String message;
 }

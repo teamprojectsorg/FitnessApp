@@ -1,9 +1,11 @@
 package com.fitnessapp.pages.home;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -12,34 +14,78 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.fitnessapp.R;
 import com.fitnessapp.databinding.FragmentHomeBinding;
+import com.fitnessapp.network.results.ErrorResult;
+import com.fitnessapp.network.results.SuccessResult;
+import com.fitnessapp.pages.capture.models.CaptureModel;
+import com.fitnessapp.pages.capture.CaptureViewModel;
 import com.fitnessapp.repositories.SharedPreferencesRepository;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.ramotion.circlemenu.CircleMenuView;
 import com.jjoe64.graphview.GridLabelRenderer;
-import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 
 public class HomeFragment extends Fragment {
 
     GraphView graphView;
     FragmentHomeBinding viewBinding;
+    CaptureViewModel viewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new CaptureViewModel();
+        getData();
+    }
+    void getData()
+    {
+        viewModel.getDailyCapture();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewBinding.goalCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_editProfileFragment));
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewBinding = FragmentHomeBinding.inflate(inflater,container,false);
-
-        initGraph();
+        graphView=(GraphView) viewBinding.idGraphView;
         initAxisTiles();
         initCircleMenu();
+        initObservers();
         viewBinding.captureCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_captureFragment));
+        viewBinding.idGraphView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_progressFragment));
         return viewBinding.getRoot();
+    }
+    private void initObservers()
+    {
+        viewModel.getCaptureResponse.observe(getViewLifecycleOwner(),
+                (it)->{
+                    if(it.getClass().equals((SuccessResult.class)))
+                    {
+                        initGraph();
+                    }
+                    else if(it.getClass().equals((ErrorResult.class)))
+                    {
+                        new AlertDialog.Builder(this.getContext())
+                                .setTitle("Error")
+                                .setMessage(it.getMessage())
+                                .show();
+                    }
+                });
     }
 
     private void initCircleMenu()
@@ -130,9 +176,9 @@ public class HomeFragment extends Fragment {
     private void initGraph()
     {
         //graph initializing
-        graphView=(GraphView) viewBinding.idGraphView;
         //graphView = viewBinding.graph;
         BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint()) ;
+        graphView.removeAllSeries();
         graphView.addSeries(series);
         series.setDrawValuesOnTop( true ) ;
         series.setValuesOnTopColor( Color.RED ) ;
@@ -145,19 +191,11 @@ public class HomeFragment extends Fragment {
     }
 
     private DataPoint[] getDataPoint() {
-        DataPoint[] dp = new DataPoint[]
-                {
-
-                        new DataPoint(0, 1),
-                        new DataPoint(1, 4),
-                        new DataPoint(2, 5),
-                        new DataPoint(3, 1),
-                        new DataPoint(4, 0),
-                        new DataPoint(5, 3),
-                        new DataPoint(6, 1),
-                        new DataPoint(7, 7),
-                        new DataPoint(8, 4)
-                };
+        CaptureModel[] data = viewModel.getCaptureResponse.getValue().getData().data;
+        DataPoint[] dp = new DataPoint[data.length];
+        for (int i=0 ; i< data.length;i++) {
+            dp[i] = new DataPoint(i, Integer.parseInt(data[i].drinkIntake));
+        }
         return dp;
     }
 }
