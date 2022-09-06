@@ -19,4 +19,6 @@
     <string name="in_ml_label">in ML</string>
     <string name="what_intake_label">What did you Intake?</string>
     <string name="percent_alcohol_label">% of Alcohol</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

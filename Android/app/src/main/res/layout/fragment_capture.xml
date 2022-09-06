@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30sp"
+    android:background="#f4f2f5"
     android:orientation="vertical"
     tools:context=".pages.capture.CaptureFragment">
 
@@ -45,12 +46,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/black"
-            android:padding="10dp">
+            android:padding="10dp"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/in_ml_label"
+                android:backgroundTint="#f4f2f5"
                 android:background="@color/white"
                 android:inputType="text"
                 android:textColor="@color/black"/>
@@ -81,32 +84,6 @@
             android:layout_marginTop="10dp"/>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/percent_alcohol_label"
-            android:textSize="20sp"
-            android:textColor="@color/black"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/black"
-            android:padding="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:textColor="@color/black"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
 
 
     <RelativeLayout
@@ -139,21 +116,23 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btnCancel"
             android:layout_width="120dp"
             android:layout_height="60sp"
             android:text="Cancel"
             android:onClick="cancel"
             android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="#7adb53"/>
+            android:backgroundTint="#7a0eeb"/>
         <Button
+            android:id="@+id/btnSave"
             android:layout_width="130dp"
             android:layout_height="60sp"
             android:text="Save"
             android:onClick="save"
             android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="#7adb53"
+            android:backgroundTint="#7a0eeb"
             android:layout_margin="50dp"/>
     </LinearLayout>
 

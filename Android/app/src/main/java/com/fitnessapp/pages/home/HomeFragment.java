@@ -25,6 +25,8 @@ import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.text.DateFormat;
+
 
 public class HomeFragment extends Fragment {
 
@@ -39,6 +41,7 @@ public class HomeFragment extends Fragment {
         initAxisTiles();
         initCircleMenu();
         viewBinding.captureCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_captureFragment));
+        viewBinding.goalHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_goalFragment));
         return viewBinding.getRoot();
     }
 
@@ -131,6 +134,9 @@ public class HomeFragment extends Fragment {
     {
         //graph initializing
         graphView=(GraphView) viewBinding.idGraphView;
+      //  final DateFormat dateTimeFormatter = DateFormat.getDateTimeInstance();
+        //graphView = new BarGraphSeries<DataPoint>(context,"chart");
+
         //graphView = viewBinding.graph;
         BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint()) ;
         graphView.addSeries(series);

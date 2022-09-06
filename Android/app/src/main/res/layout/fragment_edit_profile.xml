@@ -89,21 +89,23 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btnCancel"
             android:layout_width="120dp"
             android:layout_height="60sp"
             android:text="Cancel"
             android:onClick="cancel"
             android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="#7adb53"/>
+            android:backgroundTint="#7a0eeb"/>
         <Button
+            android:id="@+id/btnSave"
             android:layout_width="130dp"
             android:layout_height="60sp"
             android:text="Save"
             android:onClick="save"
             android:textSize="20sp"
             android:layout_gravity="center_horizontal"
-            android:backgroundTint="#7adb53"
+            android:backgroundTint="#7a0eeb"
             android:layout_margin="50dp"/>
     </LinearLayout>
 

@@ -59,7 +59,6 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:autofillHints="username"
-        android:background="#30ffffff"
         android:drawablePadding="20dp"
         android:hint="@string/username_label"
         android:inputType="text"
@@ -79,7 +78,6 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:background="#30ffffff"
             android:drawablePadding="20dp"
             android:hint="@string/password_label"
             android:inputType="textPassword"
@@ -87,17 +85,20 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="60sp"
-            android:layout_below="@id/password"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="50sp"
-            android:backgroundTint="#7adb53"
-            android:padding="10dp"
-            android:text="@string/login_label"
-            app:cornerRadius="10dp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_below="@id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginEnd="50sp"
+        android:layout_marginBottom="50sp"
+        android:backgroundTint="#7adb53"
+        android:padding="10dp"
+        android:text="@string/login_label"
+        app:cornerRadius="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
