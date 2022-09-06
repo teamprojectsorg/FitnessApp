@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,6 @@ import android.view.ViewGroup;
 
 import com.fitnessapp.R;
 import com.fitnessapp.databinding.FragmentEditProfileBinding;
-import com.fitnessapp.databinding.FragmentHomeBinding;
-import com.fitnessapp.databinding.FragmentProfileBinding;
 import com.fitnessapp.network.NetworkResult;
 import com.fitnessapp.network.results.ErrorResult;
 import com.fitnessapp.network.results.SuccessResult;
@@ -37,6 +36,8 @@ public class EditProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         editProfileViewBinding = FragmentEditProfileBinding.inflate(inflater,container,false);
+        editProfileViewBinding.btnCancel.setOnClickListener((v)-> Navigation.findNavController(v).popBackStack());
+        editProfileViewBinding.btnSave.setOnClickListener((v)->Navigation.findNavController(v).popBackStack());
         return editProfileViewBinding.getRoot();
     }
 

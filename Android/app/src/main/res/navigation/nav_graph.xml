@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_homeFragment_to_progressFragment"
             app:destination="@id/progressFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_goalFragment"
+            app:destination="@id/goalFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -75,4 +78,9 @@
         android:name="com.fitnessapp.pages.progress.ProgressFragment"
         android:label="fragment_progress"
         tools:layout="@layout/fragment_progress" />
+    <fragment
+        android:id="@+id/goalFragment"
+        android:name="com.fitnessapp.pages.goals.GoalFragment"
+        android:label="fragment_goal"
+        tools:layout="@layout/fragment_goal" />
 </navigation>

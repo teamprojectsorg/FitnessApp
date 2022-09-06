@@ -28,6 +28,8 @@ import com.ramotion.circlemenu.CircleMenuView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 
+import java.text.DateFormat;
+
 
 public class HomeFragment extends Fragment {
 
@@ -67,7 +69,7 @@ public class HomeFragment extends Fragment {
         initCircleMenu();
         initObservers();
         viewBinding.captureCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_captureFragment));
-        viewBinding.idGraphView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_progressFragment));
+        viewBinding.goalHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_goalFragment));
         return viewBinding.getRoot();
     }
     private void initObservers()
@@ -175,7 +177,10 @@ public class HomeFragment extends Fragment {
 
     private void initGraph()
     {
-        //graph initializing
+        graphView=(GraphView) viewBinding.idGraphView;
+      //  final DateFormat dateTimeFormatter = DateFormat.getDateTimeInstance();
+        //graphView = new BarGraphSeries<DataPoint>(context,"chart");
+
         //graphView = viewBinding.graph;
         BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint()) ;
         graphView.removeAllSeries();
