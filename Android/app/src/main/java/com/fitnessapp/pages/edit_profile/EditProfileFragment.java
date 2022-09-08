@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.fitnessapp.R;
 import com.fitnessapp.databinding.FragmentEditProfileBinding;
+import com.fitnessapp.models.ApiResponseModel;
 import com.fitnessapp.network.NetworkResult;
 import com.fitnessapp.network.results.ErrorResult;
 import com.fitnessapp.network.results.SuccessResult;
@@ -30,6 +31,7 @@ public class EditProfileFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         profileViewModel = new ProfileViewModel();
+        profileViewModel.getProfile();
     }
 
     @Nullable
@@ -37,8 +39,15 @@ public class EditProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         editProfileViewBinding = FragmentEditProfileBinding.inflate(inflater,container,false);
         editProfileViewBinding.btnCancel.setOnClickListener((v)-> Navigation.findNavController(v).popBackStack());
-        editProfileViewBinding.btnSave.setOnClickListener((v)->Navigation.findNavController(v).popBackStack());
+        editProfileViewBinding.btnSave.setOnClickListener((v)->putProfile());
         return editProfileViewBinding.getRoot();
+    }
+    void putProfile()
+    {
+        ProfileModel profile = new ProfileModel();
+        profile.name = editProfileViewBinding.editTextName.getText().toString();
+        profile.age = editProfileViewBinding.editTextAge.getText().toString();
+        profileViewModel.putProfile(profile);
     }
 
     @Override
@@ -51,7 +60,28 @@ public class EditProfileFragment extends Fragment {
     {
         profileViewModel.liveGetProfile.observe(getViewLifecycleOwner(),
                 (it)->handleGetProfileObserver(it));
+        profileViewModel.livePutProfile.observe(getViewLifecycleOwner(),
+                (it)-> handlePutProfileObserver(it));
     }
+
+    void handlePutProfileObserver(NetworkResult<ApiResponseModel> it)
+    {
+        if(it.getClass().equals((SuccessResult.class)))
+        {
+            new AlertDialog.Builder(this.getContext())
+                    .setTitle("Success")
+                    .setMessage("Data Saved")
+                    .show();
+        }
+        else if(it.getClass().equals((ErrorResult.class)))
+        {
+            new AlertDialog.Builder(this.getContext())
+                    .setTitle("Error")
+                    .setMessage(it.getMessage())
+                    .show();
+        }
+    }
+
     void handleGetProfileObserver(NetworkResult<ProfileResponseModel> it)
     {
         if(it.getClass().equals((SuccessResult.class)))

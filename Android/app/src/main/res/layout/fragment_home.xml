@@ -77,7 +77,6 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/goal_homepage_card"
                         android:layout_width="80sp"
                         android:layout_height="200sp"
                         android:layout_row="0"

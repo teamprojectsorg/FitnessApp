@@ -5,4 +5,5 @@ public class CaptureModel {
     public String drinkIntension;
     public String date;
     public String drinkName;
+    public String diseaseRisk;
 }

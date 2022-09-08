@@ -13,10 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fitnessapp.databinding.FragmentProgressBinding;
+import com.fitnessapp.network.NetworkResult;
 import com.fitnessapp.network.results.ErrorResult;
 import com.fitnessapp.network.results.SuccessResult;
 import com.fitnessapp.pages.capture.models.CaptureModel;
 import com.fitnessapp.pages.capture.CaptureViewModel;
+import com.fitnessapp.pages.capture.models.CaptureResponseModel;
+import com.fitnessapp.pages.goals.PreferenceViewModel;
+import com.fitnessapp.pages.goals.models.PrefernceModel;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
@@ -28,6 +32,8 @@ public class ProgressFragment extends Fragment {
     CaptureViewModel viewModel;
     CaptureModel[] data;
 
+    ProgressViewModel progressViewModel;
+    DiseaseResponseModel.DiseaseModel diseaseData;
 
     public ProgressFragment() {
     }
@@ -56,20 +62,42 @@ public class ProgressFragment extends Fragment {
     {
         viewModel.getCaptureResponse.observe(getViewLifecycleOwner(),
                 (it)->{
-                    if(it.getClass().equals((SuccessResult.class)))
-                    {
-                         data = viewModel.getCaptureResponse.getValue().getData().data;
-                        viewBinding.lblUserIntake.setText(data[data.length-1].drinkIntake);
-                        initGraph();
-                    }
-                    else if(it.getClass().equals((ErrorResult.class)))
-                    {
-                        new AlertDialog.Builder(this.getContext())
-                                .setTitle("Error")
-                                .setMessage(it.getMessage())
-                                .show();
-                    }
+                    handelCaptureObserver(it);
                 });
+    }
+
+    void handleDiseaseRiskObserver(NetworkResult<DiseaseResponseModel> it)
+    {
+        if(it.getClass().equals((SuccessResult.class)))
+        {
+            diseaseData = progressViewModel.liveGetDiseaseRisk.getValue().getData().data;
+            viewBinding.lblDiseaseRisk.setText(diseaseData.diseaseRisk);
+        }
+        else if(it.getClass().equals((ErrorResult.class)))
+        {
+            new AlertDialog.Builder(this.getContext())
+                    .setTitle("Error")
+                    .setMessage(it.getMessage())
+                    .show();
+        }
+    }
+
+    void handelCaptureObserver(NetworkResult<CaptureResponseModel> it)
+    {
+        if(it.getClass().equals((SuccessResult.class)))
+        {
+            data = viewModel.getCaptureResponse.getValue().getData().data;
+            viewBinding.lblUserIntake.setText(data[data.length-1].drinkIntake);
+            viewBinding.lblDiseaseRisk.setText(data[data.length-1].diseaseRisk);
+            initGraph();
+        }
+        else if(it.getClass().equals((ErrorResult.class)))
+        {
+            new AlertDialog.Builder(this.getContext())
+                    .setTitle("Error")
+                    .setMessage(it.getMessage())
+                    .show();
+        }
     }
 
     private void initGraph()

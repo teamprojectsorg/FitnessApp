@@ -52,7 +52,7 @@ public class CaptureFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewBinding = FragmentCaptureBinding.inflate(inflater,container,false);
         viewBinding.btnCancel.setOnClickListener((v)-> Navigation.findNavController(v).popBackStack());
-        viewBinding.btnSave.setOnClickListener((v)->Navigation.findNavController(v).popBackStack());
+        viewBinding.btnSave.setOnClickListener((v)->save(v));
       
         spinner = viewBinding.spinner;
 

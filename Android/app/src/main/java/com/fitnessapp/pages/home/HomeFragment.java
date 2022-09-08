@@ -57,7 +57,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewBinding.goalCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_editProfileFragment));
     }
 
     @Override
@@ -69,7 +68,8 @@ public class HomeFragment extends Fragment {
         initCircleMenu();
         initObservers();
         viewBinding.captureCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_captureFragment));
-        viewBinding.goalHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_goalFragment));
+        viewBinding.goalCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_goalFragment));
+        viewBinding.idGraphView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_progressFragment));
         return viewBinding.getRoot();
     }
     private void initObservers()
@@ -155,7 +155,7 @@ public class HomeFragment extends Fragment {
                 nc.navigate(R.id.action_homeFragment_to_profileFragment);
                 break;
             case 2:
-                nc.navigate(R.id.action_homeFragment_to_progressFragment);
+                //nc.navigate(R.id.action_homeFragment_to_progressFragment);
                 break;
             case 3:
                 new SharedPreferencesRepository().setLoggedIn(false);
