@@ -3,17 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/SignUpFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/SignUpFragment"
         android:name="com.fitnessapp.pages.login_signup.fragments.SignUpFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
-        <action
-            android:id="@+id/action_SignUpFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_signup" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.fitnessapp.pages.login_signup.fragments.LoginFragment"
@@ -21,7 +17,12 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@+id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_SignUpFragment"
+            app:destination="@id/SignUpFragment" />
 
     </fragment>
     <fragment
@@ -30,8 +31,56 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_pop"
-            app:popUpTo="@id/SignUpFragment"
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@+id/loginFragment"
+            app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_captureFragment"
+            app:destination="@id/captureFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_progressFragment"
+            app:destination="@id/progressFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_goalFragment"
+            app:destination="@id/goalFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.fitnessapp.pages.edit_profile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/captureFragment"
+        android:name="com.fitnessapp.pages.capture.CaptureFragment"
+        android:label="fragment_capture"
+        tools:layout="@layout/fragment_capture" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.fitnessapp.pages.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_captureFragment"
+            app:destination="@id/captureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/progressFragment"
+        android:name="com.fitnessapp.pages.progress.ProgressFragment"
+        android:label="fragment_progress"
+        tools:layout="@layout/fragment_progress" />
+    <fragment
+        android:id="@+id/goalFragment"
+        android:name="com.fitnessapp.pages.goals.GoalFragment"
+        android:label="fragment_goal"
+        tools:layout="@layout/fragment_goal" />
 </navigation>

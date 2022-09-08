@@ -13,16 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fitnessapp.R;
 import com.fitnessapp.databinding.FragmentSignupBinding;
 import com.fitnessapp.pages.login_signup.LoginSignUpViewModel;
 import com.fitnessapp.pages.login_signup.models.LoginSignUpModel;
-import com.fitnessapp.utils.network_utils.results.ErrorResult;
-import com.fitnessapp.utils.network_utils.results.SuccessResult;
+import com.fitnessapp.network.results.ErrorResult;
+import com.fitnessapp.network.results.SuccessResult;
 
-import dagger.hilt.android.AndroidEntryPoint;
 
-@AndroidEntryPoint
 public class SignUpFragment extends Fragment {
     FragmentSignupBinding viewBinding;
     LoginSignUpViewModel signUpViewModel;
@@ -50,15 +47,17 @@ public class SignUpFragment extends Fragment {
 
     private void bindObserver(View view)
     {
-        signUpViewModel.liveResponse.observe(getViewLifecycleOwner(),
+        signUpViewModel.signupResponse.observe(getViewLifecycleOwner(),
                 (it) ->
                 {
-                    viewBinding.progressCircular.setEnabled(false);
+                    viewBinding.sprogressCircular.setVisibility(View.INVISIBLE);
+
 
                     if(it.getClass().equals((SuccessResult.class)))
                     {
                         Navigation.findNavController(view)
-                                .navigate(R.id.action_SignUpFragment_to_loginFragment);
+
+                                .popBackStack();
                     }
                     else if(it.getClass().equals((ErrorResult.class)))
                     {
@@ -69,7 +68,7 @@ public class SignUpFragment extends Fragment {
                     }
                     else
                     {
-                        viewBinding.progressCircular.setEnabled(true);
+                        viewBinding.sprogressCircular.setVisibility(View.VISIBLE);
                     }
                 });
     }
@@ -100,7 +99,7 @@ public class SignUpFragment extends Fragment {
             viewBinding.repeatpass.setError("Field cannot be empty");
             return false;
         }
-        else if(viewBinding.password.equals(viewBinding.repeatpass))
+        else if(!getPassword().equals(repeatPassInput))
         {
             viewBinding.repeatpass.setError("Password donot match");
             return false;
@@ -111,7 +110,8 @@ public class SignUpFragment extends Fragment {
         }
     }
     public void register(View v) {
-        if(!validateUsername() | !validatePassword() | !validateRepeatPass()) {
+        if(!validateUsername() || !validatePassword() || !validateRepeatPass()) {
+
             return;
         }
         LoginSignUpModel signUpModel = new LoginSignUpModel(getUsername(),

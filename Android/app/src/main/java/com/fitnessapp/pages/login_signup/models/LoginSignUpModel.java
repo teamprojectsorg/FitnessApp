@@ -1,6 +1,6 @@
 package com.fitnessapp.pages.login_signup.models;
 
-public class LoginSignUpModel{
+public class LoginSignUpModel {
     private String username;
     private String password;
     public LoginSignUpModel(){}
