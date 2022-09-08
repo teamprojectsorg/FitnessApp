@@ -36,6 +36,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewBinding = FragmentHomeBinding.inflate(inflater,container,false);
+        return viewBinding.getRoot();
+    }
 
         initGraph();
         initAxisTiles();

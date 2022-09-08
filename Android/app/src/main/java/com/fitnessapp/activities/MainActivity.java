@@ -15,6 +15,9 @@ import android.view.View;
 import com.fitnessapp.R;
 import com.fitnessapp.repositories.SharedPreferencesRepository;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {

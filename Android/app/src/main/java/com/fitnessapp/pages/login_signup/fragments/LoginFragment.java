@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -26,7 +27,9 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         loginViewModel = new LoginSignUpViewModel();
+
         viewBinding = FragmentLoginBinding.inflate(inflater,container,false);
 
         return viewBinding.getRoot();
@@ -50,11 +53,13 @@ public class LoginFragment extends Fragment {
         viewBinding.newUser.setOnClickListener((v)->
         {
             Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_SignUpFragment);
+
         });
     }
 
     private void bindObserver(View view)
     {
+
         loginViewModel.loginResponse.observe(getViewLifecycleOwner(),
                 (it) ->
                 {
@@ -67,6 +72,7 @@ public class LoginFragment extends Fragment {
                         NavController navController = Navigation.findNavController(view);
 
                         navController
+
                                 .navigate(R.id.action_loginFragment_to_homeFragment);
                     }
                     else if(it.getClass().equals((ErrorResult.class)))
@@ -78,6 +84,7 @@ public class LoginFragment extends Fragment {
                     }
                     else
                     {
+
                         viewBinding.progressCircular.setVisibility(View.VISIBLE);
                     }
                 });
@@ -104,13 +111,16 @@ public class LoginFragment extends Fragment {
     }
     public void logIn(View v) {
         if(!validateUsername() || !validatePassword()) {
+
             return;
         }
         LoginSignUpModel logInModel = new LoginSignUpModel(getUsername(),
                 getPassword());
 
+
         loginViewModel.logIn(logInModel);
         //Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_homeFragment);
+
     }
 
     private String getUsername()
