@@ -16,7 +16,7 @@
         android:backgroundTint="#30ffffff"
         android:outlineSpotShadowColor="@color/black"
         android:layout_height="300sp"
-        android:layout_width="450sp"/>
+        android:layout_width="match_parent"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:backgroundTint="#30ffffff"
                 android:outlineSpotShadowColor="@color/black"
                 android:layout_height="300sp"
-                android:layout_width="450sp"/>
+                android:layout_width="match_parent"/>
         </LinearLayout>
 
         <GridLayout
