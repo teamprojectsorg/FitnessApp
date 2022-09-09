@@ -4,7 +4,7 @@
     <array name="icons">
         <item>@drawable/ic_baseline_home_24</item>
         <item>@drawable/ic_baseline_person_outline_24</item>
-        <item>@drawable/progress_btn</item>
+        <item>@drawable/img</item>
         <item>@drawable/logout_icon</item>
         <item>@drawable/img</item>
     </array>

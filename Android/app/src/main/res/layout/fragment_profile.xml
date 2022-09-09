@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="username"
+        android:id="@+id/lblUsername"
         android:layout_margin="15dp"
         android:textColor="@color/black"
         android:textSize="30sp"/>
