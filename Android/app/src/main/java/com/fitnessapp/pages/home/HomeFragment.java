@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.fitnessapp.R;
 import com.fitnessapp.databinding.FragmentHomeBinding;
@@ -21,27 +20,20 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.ramotion.circlemenu.CircleMenuView;
 import com.jjoe64.graphview.GridLabelRenderer;
-import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-
-import java.text.DateFormat;
 
 
 public class HomeFragment extends Fragment {
 
-    GraphView graphView;
     FragmentHomeBinding viewBinding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewBinding = FragmentHomeBinding.inflate(inflater,container,false);
-        return viewBinding.getRoot();
-    }
 
-        initGraph();
-        initAxisTiles();
         initCircleMenu();
+        viewBinding.helpCenterHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate((R.id.action_homeFragment_to_helpCenterFragment)));
+        viewBinding.progressCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_progressFragment));
         viewBinding.captureCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_captureFragment));
         viewBinding.goalHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_goalFragment));
         return viewBinding.getRoot();
@@ -123,49 +115,5 @@ public class HomeFragment extends Fragment {
                 //nc.navigate(R.id.action_homeFragment_to_captureFragment);
                 break;
         }
-    }
-
-    private void initAxisTiles()
-    {
-        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-        gridLabel.setVerticalAxisTitle("Intake(in ML)");
-        gridLabel.setHorizontalAxisTitleTextSize(40);
-    }
-
-    private void initGraph()
-    {
-        //graph initializing
-        graphView=(GraphView) viewBinding.idGraphView;
-      //  final DateFormat dateTimeFormatter = DateFormat.getDateTimeInstance();
-        //graphView = new BarGraphSeries<DataPoint>(context,"chart");
-
-        //graphView = viewBinding.graph;
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint()) ;
-        graphView.addSeries(series);
-        series.setDrawValuesOnTop( true ) ;
-        series.setValuesOnTopColor( Color.RED ) ;
-        series.setSpacing( 40 ) ;
-        graphView.setTitle("Daily Intake");
-
-        graphView.setTitleColor(Color.BLACK);
-
-        graphView.setTitleTextSize(50);
-    }
-
-    private DataPoint[] getDataPoint() {
-        DataPoint[] dp = new DataPoint[]
-                {
-
-                        new DataPoint(0, 1),
-                        new DataPoint(1, 4),
-                        new DataPoint(2, 5),
-                        new DataPoint(3, 1),
-                        new DataPoint(4, 0),
-                        new DataPoint(5, 3),
-                        new DataPoint(6, 1),
-                        new DataPoint(7, 7),
-                        new DataPoint(8, 4)
-                };
-        return dp;
     }
 }
