@@ -13,5 +13,5 @@ public interface LoginSignUpAPI {
     Call<SignUpResponseModel> signUp(@Body LoginSignUpModel signUpModel);
 
     @POST("auth/login")
-    Call<LoginResponseModel> logIn(@Body LoginSignUpModel logInModel);
+    Call<LoginResponseModel > logIn(@Body LoginSignUpModel logInModel);
 }

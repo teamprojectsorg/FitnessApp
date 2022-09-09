@@ -123,6 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.3 to 5.9ml"
+                    android:id="@+id/lblUserIntake"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -232,6 +233,7 @@
                         android:textSize="15sp"
                         android:textStyle="bold" />
                     <TextView
+                        android:id="@+id/lblDiseaseRisk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2%"
