@@ -88,7 +88,7 @@
                         android:layout_margin="8dp"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="8dp"
-                        android:id="@+id/goalCard">
+                        android:id="@+id/goalHomepageCard">
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

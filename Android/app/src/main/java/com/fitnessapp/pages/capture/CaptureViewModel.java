@@ -8,20 +8,22 @@ import com.fitnessapp.pages.capture.models.CaptureModel;
 import com.fitnessapp.pages.capture.models.CaptureResponseModel;
 
 public class CaptureViewModel {
-    private CaptureRepository captureRepository;
+    private ConsumptionRepository captureRepository;
 
-    public LiveData<NetworkResult<CaptureResponseModel>> getCaptureResponse;
+    public LiveData<NetworkResult<CaptureResponseModel>> liveGetDailyConsumption;
+    public LiveData<NetworkResult<CaptureResponseModel>> liveGetWeeklyConsumption;
     public LiveData<NetworkResult<ApiResponseModel>> postResponse;
 
     public CaptureViewModel()
     {
-        this.captureRepository = new CaptureRepository();
-        this.getCaptureResponse = captureRepository.getCaptureResponse;
-        this.postResponse = captureRepository.postCaptureResponse;
+        this.captureRepository = new ConsumptionRepository();
+        this.liveGetWeeklyConsumption = captureRepository.liveWeeklyConsumption;
+        this.liveGetDailyConsumption = captureRepository.liveDailyConsumtion;
+        this.postResponse = captureRepository.liveAddConsumtion;
     }
     public void getDailyCapture()
     {
-        captureRepository.getDailyCaptures();
+        captureRepository.getDailyConsumption();
     }
     public void getWeeklyCapture(){captureRepository.getWeeklyCaptures();}
     public void addCapture(CaptureModel capture)

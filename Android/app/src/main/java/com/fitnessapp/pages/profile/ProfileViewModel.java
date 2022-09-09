@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData;
 
 import com.fitnessapp.models.ApiResponseModel;
 import com.fitnessapp.network.NetworkResult;
-import com.fitnessapp.pages.capture.CaptureRepository;
-import com.fitnessapp.pages.capture.models.CaptureResponseModel;
 import com.fitnessapp.pages.profile.models.ProfileModel;
 import com.fitnessapp.pages.profile.models.ProfileResponseModel;
 

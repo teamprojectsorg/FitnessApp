@@ -54,8 +54,7 @@ public class CaptureFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewBinding = FragmentCaptureBinding.inflate(inflater,container,false);
 
-        viewBinding.btnCancel.setOnClickListener((v)-> Navigation.findNavController(v).popBackStack());
-        viewBinding.btnSave.setOnClickListener((v)->save(v));
+        viewBinding.btnSubmit.setOnClickListener((v)->save(v));
       
         spinner = viewBinding.spinner;
 
@@ -118,12 +117,13 @@ public class CaptureFragment extends Fragment {
 
     public void save(View v)
     {
+        //TODO Handel dropdowns
         CaptureModel capture = new CaptureModel();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             capture.date = LocalDate.now().toString();
         }
         capture.drinkName = viewBinding.spinner.getSelectedItem().toString();
-        capture.drinkIntake = viewBinding.editTextQuantity.getText().toString();
+        //capture.drinkIntake = viewBinding.editTextQuantity.getText().toString();
         capture.drinkIntension = viewBinding.spinnerwhy.getSelectedItem().toString();
         viewModel.addCapture(capture);
     }
@@ -140,8 +140,6 @@ public class CaptureFragment extends Fragment {
 
     void handleObserver(NetworkResult<ApiResponseModel> it)
     {
-        viewBinding.progressCircular.setVisibility(View.INVISIBLE);
-
         if(it.getClass().equals((SuccessResult.class)))
         {
             NavController navController = Navigation.findNavController(viewBinding.getRoot());
@@ -158,10 +156,6 @@ public class CaptureFragment extends Fragment {
                     .setTitle("Error")
                     .setMessage(it.getMessage())
                     .show();
-        }
-        else
-        {
-            viewBinding.progressCircular.setVisibility(View.VISIBLE);
         }
     }
 }
