@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_homeFragment_to_goalFragment"
             app:destination="@id/goalFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_helpCenterFragment"
+            app:destination="@id/helpCenterFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -83,4 +86,9 @@
         android:name="com.fitnessapp.pages.goals.GoalFragment"
         android:label="fragment_goal"
         tools:layout="@layout/fragment_goal" />
+    <fragment
+        android:id="@+id/helpCenterFragment"
+        android:name="com.fitnessapp.pages.help_center.HelpCenterFragment"
+        android:label="fragment_help_center"
+        tools:layout="@layout/fragment_help_center" />
 </navigation>

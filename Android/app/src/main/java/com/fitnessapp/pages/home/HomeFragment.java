@@ -30,10 +30,8 @@ import com.jjoe64.graphview.series.DataPoint;
 
 import java.text.DateFormat;
 
-
 public class HomeFragment extends Fragment {
 
-    GraphView graphView;
     FragmentHomeBinding viewBinding;
     CaptureViewModel viewModel;
 
@@ -43,8 +41,8 @@ public class HomeFragment extends Fragment {
         viewModel = new CaptureViewModel();
         getData();
     }
-    void getData()
-    {
+
+    void getData() {
         viewModel.getDailyCapture();
     }
 
@@ -61,38 +59,21 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        viewBinding = FragmentHomeBinding.inflate(inflater,container,false);
-        graphView=(GraphView) viewBinding.idGraphView;
-        initAxisTiles();
+            Bundle savedInstanceState) {
+        viewBinding = FragmentHomeBinding.inflate(inflater, container, false);
+
         initCircleMenu();
-        initObservers();
+
+        viewBinding.helpCenterHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate((R.id.action_homeFragment_to_helpCenterFragment)));
+        viewBinding.progressCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_progressFragment));
         viewBinding.captureCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_captureFragment));
-        viewBinding.goalCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_goalFragment));
-        viewBinding.idGraphView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_progressFragment));
+        viewBinding.goalHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_goalFragment));
+
         return viewBinding.getRoot();
     }
-    private void initObservers()
-    {
-        viewModel.getCaptureResponse.observe(getViewLifecycleOwner(),
-                (it)->{
-                    if(it.getClass().equals((SuccessResult.class)))
-                    {
-                        initGraph();
-                    }
-                    else if(it.getClass().equals((ErrorResult.class)))
-                    {
-                        new AlertDialog.Builder(this.getContext())
-                                .setTitle("Error")
-                                .setMessage(it.getMessage())
-                                .show();
-                    }
-                });
-    }
 
-    private void initCircleMenu()
-    {
-        //circle Menu
+    private void initCircleMenu() {
+        // circle Menu
         final CircleMenuView menu = viewBinding.circleMenu;
         menu.setEventListener(new CircleMenuView.EventListener() {
             @Override
@@ -144,18 +125,16 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void swithFragments(int i)
-    {
+    private void swithFragments(int i) {
         NavController nc = Navigation.findNavController(viewBinding.getRoot());
-        switch(i)
-        {
+        switch (i) {
             case 0:
                 break;
             case 1:
                 nc.navigate(R.id.action_homeFragment_to_profileFragment);
                 break;
             case 2:
-                //nc.navigate(R.id.action_homeFragment_to_progressFragment);
+                // nc.navigate(R.id.action_homeFragment_to_progressFragment);
                 break;
             case 3:
                 new SharedPreferencesRepository().setLoggedIn(false);
@@ -163,44 +142,8 @@ public class HomeFragment extends Fragment {
                 nc.navigate(R.id.action_homeFragment_to_loginFragment);
                 break;
             case 4:
-                //nc.navigate(R.id.action_homeFragment_to_captureFragment);
+                // nc.navigate(R.id.action_homeFragment_to_captureFragment);
                 break;
         }
-    }
-
-    private void initAxisTiles()
-    {
-        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-        gridLabel.setVerticalAxisTitle("Intake(in ML)");
-        gridLabel.setHorizontalAxisTitleTextSize(40);
-    }
-
-    private void initGraph()
-    {
-        graphView=(GraphView) viewBinding.idGraphView;
-      //  final DateFormat dateTimeFormatter = DateFormat.getDateTimeInstance();
-        //graphView = new BarGraphSeries<DataPoint>(context,"chart");
-
-        //graphView = viewBinding.graph;
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint()) ;
-        graphView.removeAllSeries();
-        graphView.addSeries(series);
-        series.setDrawValuesOnTop( true ) ;
-        series.setValuesOnTopColor( Color.RED ) ;
-        series.setSpacing( 40 ) ;
-        graphView.setTitle("Daily Intake");
-
-        graphView.setTitleColor(Color.BLACK);
-
-        graphView.setTitleTextSize(50);
-    }
-
-    private DataPoint[] getDataPoint() {
-        CaptureModel[] data = viewModel.getCaptureResponse.getValue().getData().data;
-        DataPoint[] dp = new DataPoint[data.length];
-        for (int i=0 ; i< data.length;i++) {
-            dp[i] = new DataPoint(i, Integer.parseInt(data[i].drinkIntake));
-        }
-        return dp;
     }
 }

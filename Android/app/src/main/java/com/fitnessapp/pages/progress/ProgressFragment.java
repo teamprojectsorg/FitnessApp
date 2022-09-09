@@ -22,18 +22,16 @@ import com.fitnessapp.pages.capture.models.CaptureResponseModel;
 import com.fitnessapp.pages.goals.PreferenceViewModel;
 import com.fitnessapp.pages.goals.models.PrefernceModel;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
 public class ProgressFragment extends Fragment {
-    GraphView graphView;
     FragmentProgressBinding viewBinding;
 
     CaptureViewModel viewModel;
-    CaptureModel[] data;
-
-    ProgressViewModel progressViewModel;
-    DiseaseResponseModel.DiseaseModel diseaseData;
+    CaptureModel[] dailyData;
+    CaptureModel[] weeklyData;
 
     public ProgressFragment() {
     }
@@ -43,12 +41,13 @@ public class ProgressFragment extends Fragment {
         super.onCreate(savedInstanceState);
         viewModel = new CaptureViewModel();
         viewModel.getWeeklyCapture();
+        viewModel.getDailyCapture();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        viewBinding = FragmentProgressBinding.inflate(inflater,container,false);
+            Bundle savedInstanceState) {
+        viewBinding = FragmentProgressBinding.inflate(inflater, container, false);
 
         return viewBinding.getRoot();
     }
@@ -58,72 +57,100 @@ public class ProgressFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initObservers(view);
     }
-    private void initObservers(View v)
-    {
-        viewModel.getCaptureResponse.observe(getViewLifecycleOwner(),
-                (it)->{
-                    handelCaptureObserver(it);
+
+    private void initObservers(View v) {
+        viewModel.liveGetDailyConsumption.observe(getViewLifecycleOwner(),
+                (it) -> {
+                    handelObserver(it,viewBinding.graphViewDaily,"Daily Intake",Color.YELLOW);
+                });
+        viewModel.liveGetWeeklyConsumption.observe(getViewLifecycleOwner(),
+                (it) -> {
+                    handelObserver(it,viewBinding.graphViewWeekly,"Weekly Intake",Color.BLUE);
                 });
     }
 
-    void handleDiseaseRiskObserver(NetworkResult<DiseaseResponseModel> it)
-    {
-        if(it.getClass().equals((SuccessResult.class)))
-        {
-            diseaseData = progressViewModel.liveGetDiseaseRisk.getValue().getData().data;
-            viewBinding.lblDiseaseRisk.setText(diseaseData.diseaseRisk);
-        }
-        else if(it.getClass().equals((ErrorResult.class)))
-        {
+    void handelObserver(NetworkResult<CaptureResponseModel> it,GraphView graphView,String title,Integer barColorNumber) {
+        if (it.getClass().equals((SuccessResult.class))) {
+            setData();
+            initGraph(graphView,title,barColorNumber);
+        } else if (it.getClass().equals((ErrorResult.class))) {
             new AlertDialog.Builder(this.getContext())
                     .setTitle("Error")
                     .setMessage(it.getMessage())
                     .show();
         }
     }
-
-    void handelCaptureObserver(NetworkResult<CaptureResponseModel> it)
+    void setData()
     {
-        if(it.getClass().equals((SuccessResult.class)))
+        CaptureResponseModel dailyResponse = viewModel.liveGetDailyConsumption.getValue().getData();
+        CaptureResponseModel weeklyResponse = viewModel.liveGetWeeklyConsumption.getValue().getData();
+        if(dailyResponse!=null)
         {
-            data = viewModel.getCaptureResponse.getValue().getData().data;
-            viewBinding.lblUserIntake.setText(data[data.length-1].drinkIntake);
-            viewBinding.lblDiseaseRisk.setText(data[data.length-1].diseaseRisk);
-            initGraph();
+            dailyData = dailyResponse.data;
         }
-        else if(it.getClass().equals((ErrorResult.class)))
+        if(weeklyResponse!=null)
         {
-            new AlertDialog.Builder(this.getContext())
-                    .setTitle("Error")
-                    .setMessage(it.getMessage())
-                    .show();
+            weeklyData = weeklyResponse.data;
+            setUsersWeeklyIntake();
+        }
+    }
+    void setUsersWeeklyIntake()
+    {
+        if(weeklyData!=null)
+        {
+            CaptureModel[] data = weeklyData;
+            viewBinding.lblUserIntake.setText(data[data.length - 1].drinkIntake);
         }
     }
 
-    private void initGraph()
-    {
-        //graph initializing
-        graphView=(GraphView) viewBinding.progressGraphView;
-        //graphView = viewBinding.graph;
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint()) ;
+    private void initGraph(GraphView graphView,String title,Integer barColorNumber) {
+        CaptureModel[] data;
+        if(title.charAt(0) == 'D')
+        {
+            data = dailyData;
+        }
+        else
+        {
+            data = weeklyData;
+        }
+        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
+        gridLabel.setVerticalAxisTitle("Intake(in ML)");
+        gridLabel.setHorizontalAxisTitleTextSize(40);
+
+        graphView.removeAllSeries();
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint(data));
+        series.setDrawValuesOnTop(true);
+        series.setValuesOnTopColor(Color.RED);
+        series.setSpacing(40);
+        series.setColor(barColorNumber);
         graphView.addSeries(series);
-        series.setDrawValuesOnTop( true ) ;
-        series.setValuesOnTopColor( Color.RED ) ;
-        series.setSpacing( 40 ) ;
-        series.setColor(Color.YELLOW);
-        graphView.setTitle("Weekly Agregated Intake");
 
+        graphView.setTitle(title);
         graphView.setTitleColor(Color.BLACK);
-
         graphView.setTitleTextSize(50);
     }
 
-    private DataPoint[] getDataPoint() {
-
+    private DataPoint[] getDataPoint(CaptureModel[] data) {
         DataPoint[] dp = new DataPoint[data.length];
-        for (int i=0 ; i< data.length;i++) {
+        for (int i = 0; i < data.length; i++) {
             dp[i] = new DataPoint(i, Integer.parseInt(data[i].drinkIntake));
         }
+        return dp;
+    }
+
+    private DataPoint[] getStaticDataPoint() {
+        DataPoint[] dp = new DataPoint[] {
+
+                new DataPoint(0, 1),
+                new DataPoint(1, 4),
+                new DataPoint(2, 5),
+                new DataPoint(3, 1),
+                new DataPoint(4, 0),
+                new DataPoint(5, 3),
+                new DataPoint(6, 1),
+                new DataPoint(7, 7),
+                new DataPoint(8, 4)
+        };
         return dp;
     }
 }

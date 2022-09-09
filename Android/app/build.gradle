@@ -57,4 +57,5 @@ dependencies {
     implementation 'com.jjoe64:graphview:4.2.2'
     implementation 'com.ramotion.circlemenu:circle-menu:0.3.2'
 
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 }

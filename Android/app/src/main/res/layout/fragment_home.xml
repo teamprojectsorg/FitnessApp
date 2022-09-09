@@ -88,7 +88,7 @@
                         android:layout_margin="8dp"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="8dp"
-                        android:id="@+id/goalCard">
+                        android:id="@+id/goalHomepageCard">
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -115,18 +115,90 @@
 
                 </GridLayout>
 
-                <LinearLayout
+                <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp">
-                    <com.jjoe64.graphview.GraphView
-                        android:id="@+id/idGraphView"
-                        android:padding="5dp"
-                        android:backgroundTint="#30ffffff"
-                        android:outlineSpotShadowColor="@color/black"
-                        android:layout_height="300sp"
-                        android:layout_width="450sp"/>
-                </LinearLayout>
+                    android:rowCount="1"
+                    android:columnCount="2">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/progressCardView"
+                        android:layout_width="75sp"
+                        android:layout_height="200sp"
+                        android:layout_row="0"
+                        android:layout_rowWeight="1"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="#7dd967"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="80sp"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/progress_homepage_icon" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Progress"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/helpCenter_homepage_card"
+                        android:layout_width="80sp"
+                        android:layout_height="200sp"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_gravity="fill"
+                        android:layout_rowWeight="1"
+                        android:backgroundTint="#f2aef5"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="8dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="8dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center_vertical|center_horizontal">
+
+                            <ImageView
+                                android:layout_width="70sp"
+                                android:layout_height="70sp"
+                                android:src="@drawable/help_homepage_icon"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Help Center"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textAlignment="center"/>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
 
                 <GridLayout
                     android:layout_width="match_parent"
@@ -142,7 +214,7 @@
                         android:layout_gravity="fill"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
-                        android:backgroundTint="#7dd967"
+                        android:backgroundTint="#f0f5ae"
                         android:layout_margin="8dp"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="8dp">
@@ -156,12 +228,12 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/goals_icon"/>
+                                android:src="@drawable/exercise_homepage_icon_3"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Future Goals"
+                                android:text="Exercises"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold"

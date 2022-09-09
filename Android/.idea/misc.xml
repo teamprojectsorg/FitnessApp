@@ -12,11 +12,14 @@
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_capture.xml" value="0.2" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_goal.xml" value="0.2504528985507246" />
+        <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_help_center.xml" value="0.25416666666666665" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_progress.xml" value="0.25416666666666665" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_signup.xml" value="0.25416666666666665" />
+        <entry key="..\:/FitnessApp/Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
+        <entry key="..\:/FitnessApp/Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_progress_menu.xml" value="0.1495" />
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/drawable/setting_menu_icon.xml" value="0.2465" />
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/layout/activity_login.xml" value="0.10989583333333333" />
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -27,7 +30,7 @@
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/layout/fragment_login.xml" value="0.1390625" />
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/layout/fragment_profile.xml" value="0.2359375" />
-        <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/layout/fragment_progress.xml" value="0.25" />
+        <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/layout/fragment_progress.xml" value="0.10400000000000001" />
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/layout/fragment_signup.xml" value="0.25" />
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/menu/bottom_navigation.xml" value="0.10989583333333333" />
         <entry key="..\:/flprojects/FitnessApp/FitnessApp/Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.149" />
