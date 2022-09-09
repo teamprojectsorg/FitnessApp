@@ -22,45 +22,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="90dp"
-            android:text="Capture"
+            android:layout_marginTop="20dp"
+            android:text="Enter Your Intake"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enter_intake_value_label"
-            android:textSize="20sp"
-            android:textColor="@color/black"/>
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/black"
-            android:padding="10dp"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/in_ml_label"
-                android:backgroundTint="#f4f2f5"
-                android:background="@color/white"
-                android:inputType="text"
-                android:textColor="@color/black"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -72,21 +43,65 @@
             android:id="@+id/Intake"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/what_intake_label"
+            android:text="Type of Alcohol:"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_below="@+id/Intake"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/btn_dropdown" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quantity:"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/spinner_quantity"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/quantity"
             android:background="@android:drawable/btn_dropdown"
             android:layout_marginTop="10dp"/>
     </RelativeLayout>
 
-
-
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/alcohol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alcohol percentage(if applicable)
+"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/spinner_alcohol_percentage"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/alcohol"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -96,7 +111,7 @@
             android:id="@+id/why"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Why are you drinking?"
+            android:text="Emotion when consumed"
             android:textColor="@color/black"
             android:textSize="20sp" />
         <Spinner
@@ -108,7 +123,18 @@
             android:layout_marginTop="10dp"/>
     </RelativeLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="120dp"
+        android:layout_height="60sp"
+        android:text="Submit"
+        android:onClick="submit"
+        android:textSize="20sp"
+        android:layout_margin="70sp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#7a0eeb"/>
+
+ <!--   <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
@@ -134,7 +160,7 @@
             android:layout_gravity="center_horizontal"
             android:backgroundTint="#7a0eeb"
             android:layout_margin="50dp"/>
-    </LinearLayout>
+    </LinearLayout> -->
 
 
 

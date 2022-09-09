@@ -20,6 +20,8 @@ import com.fitnessapp.databinding.FragmentSignupBinding;
 public class CaptureFragment extends Fragment {
     Spinner spinner;
     Spinner spinner1;
+    Spinner spinnerAlcohol;
+    String[] alcohol_percentage = {"3 - 6%","10 - 15%","35 - 50%"};
     String[] intakemood = {"Happy", "Sad", "Angry", "Occasionally", "Nothing/Fun" };
     String[] intaketype = { "Beer: more than 7%", "Whiskey: 40% - 50%", "Wine: 5% - 25%"};
     FragmentCaptureBinding viewBinding;
@@ -27,8 +29,8 @@ public class CaptureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewBinding = FragmentCaptureBinding.inflate(inflater,container,false);
-        viewBinding.btnCancel.setOnClickListener((v)-> Navigation.findNavController(v).popBackStack());
-        viewBinding.btnSave.setOnClickListener((v)->Navigation.findNavController(v).popBackStack());
+        viewBinding.btnSubmit.setOnClickListener((v)-> Navigation.findNavController(v).popBackStack());
+
         spinner = viewBinding.spinner;
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,intaketype);
@@ -47,7 +49,6 @@ public class CaptureFragment extends Fragment {
             }
         });
         //for intake mood
-        spinner1 =
         spinner1 = viewBinding.spinnerwhy;
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,intakemood);
@@ -65,6 +66,26 @@ public class CaptureFragment extends Fragment {
 
             }
         });
+
+        //for alcohol percentage
+        spinnerAlcohol = viewBinding.spinnerAlcoholPercentage;
+
+        ArrayAdapter<String> adapterAlcohol = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,alcohol_percentage);
+        adapterAlcohol.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAlcohol.setAdapter(adapterAlcohol);
+
+        spinnerAlcohol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String valueAlcohol = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         return viewBinding.getRoot();
     }
