@@ -23,6 +23,8 @@ import com.fitnessapp.pages.goals.PreferenceViewModel;
 import com.fitnessapp.pages.goals.models.PrefernceModel;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
@@ -91,15 +93,6 @@ public class ProgressFragment extends Fragment {
         if(weeklyResponse!=null)
         {
             weeklyData = weeklyResponse.data;
-            setUsersWeeklyIntake();
-        }
-    }
-    void setUsersWeeklyIntake()
-    {
-        if(weeklyData!=null)
-        {
-            CaptureModel[] data = weeklyData;
-            viewBinding.lblUserIntake.setText(data[data.length - 1].drinkIntake);
         }
     }
 
@@ -113,22 +106,43 @@ public class ProgressFragment extends Fragment {
         {
             data = weeklyData;
         }
+
         GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-        gridLabel.setVerticalAxisTitle("Intake(in ML)");
+        gridLabel.setVerticalAxisTitle("Alcohol %");
         gridLabel.setHorizontalAxisTitleTextSize(40);
 
         graphView.removeAllSeries();
         BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint(data));
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
-        series.setSpacing(40);
+        series.setSpacing(25);
         series.setColor(barColorNumber);
         graphView.addSeries(series);
+
+        String[] dates = getDates(data);
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
+        staticLabelsFormatter.setHorizontalLabels(dates);
+
+        graphView.getGridLabelRenderer().setHorizontalLabelsAngle(120);
+        graphView.getGridLabelRenderer().setLabelHorizontalHeight(125);
+        graphView.getViewport().setXAxisBoundsManual(true);
+        graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
         graphView.setTitle(title);
         graphView.setTitleColor(Color.BLACK);
         graphView.setTitleTextSize(50);
     }
+    String[] getDates(CaptureModel[] data)
+    {
+        int len = data.length;
+        String[] dates= new String[len];
+        for(int i=0;i<len;i++)
+        {
+            dates[i] = data[i].date;
+        }
+        return  dates;
+    }
+
 
     private DataPoint[] getDataPoint(CaptureModel[] data) {
         DataPoint[] dp = new DataPoint[data.length];
