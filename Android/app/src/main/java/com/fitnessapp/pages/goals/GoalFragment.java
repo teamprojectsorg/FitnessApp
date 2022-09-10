@@ -88,7 +88,6 @@ public class GoalFragment extends Fragment {
     void setUiFields()
     {
         viewBinding.editTextCurrentIntake.setText(data.currentIntake);
-        viewBinding.editTextPreviousIntake.setText(data.previousIntake);
     }
 
     @Override
@@ -103,7 +102,6 @@ public class GoalFragment extends Fragment {
     {
         PrefernceModel prefernce = new PrefernceModel();
         prefernce.currentIntake = viewBinding.editTextCurrentIntake.getText().toString();
-        prefernce.previousIntake = viewBinding.editTextPreviousIntake.getText().toString();
         preferenceViewModel.putPreferences(prefernce);
     }
 }
