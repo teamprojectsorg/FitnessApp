@@ -27,10 +27,12 @@ import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class ProgressFragment extends Fragment {
     FragmentProgressBinding viewBinding;
 
+    GraphView graphView;
     CaptureViewModel viewModel;
     CaptureModel[] dailyData;
     CaptureModel[] weeklyData;
@@ -51,6 +53,21 @@ public class ProgressFragment extends Fragment {
             Bundle savedInstanceState) {
         viewBinding = FragmentProgressBinding.inflate(inflater, container, false);
 
+        graphView = viewBinding.lineGraphView;
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 3),
+                new DataPoint(2, 4),
+                new DataPoint(8, 2)
+        });
+        graphView.addSeries(series);
+        graphView.setTitle("Aggregate Intake");
+        graphView.setTitleColor(Color.BLACK);
+        graphView.setTitleTextSize(30);
+        //axis titles
+        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
+        gridLabel.setVerticalAxisTitleTextSize(40);
+        gridLabel.setVerticalAxisTitle("Alcohol Intake");
         return viewBinding.getRoot();
     }
 
