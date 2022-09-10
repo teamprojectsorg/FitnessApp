@@ -108,7 +108,7 @@ public class ProgressFragment extends Fragment {
         }
 
         GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-        gridLabel.setVerticalAxisTitle("Alcohol %");
+        gridLabel.setVerticalAxisTitle("Alcohol Intake");
         gridLabel.setHorizontalAxisTitleTextSize(40);
 
         graphView.removeAllSeries();
