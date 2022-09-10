@@ -19,7 +19,6 @@ import com.fitnessapp.pages.login_signup.models.LoginSignUpModel;
 import com.fitnessapp.network.results.ErrorResult;
 import com.fitnessapp.network.results.SuccessResult;
 
-
 public class SignUpFragment extends Fragment {
     FragmentSignupBinding viewBinding;
     LoginSignUpViewModel signUpViewModel;
@@ -52,11 +51,9 @@ public class SignUpFragment extends Fragment {
                 {
                     viewBinding.sprogressCircular.setVisibility(View.INVISIBLE);
 
-
                     if(it.getClass().equals((SuccessResult.class)))
                     {
                         Navigation.findNavController(view)
-
                                 .popBackStack();
                     }
                     else if(it.getClass().equals((ErrorResult.class)))
@@ -111,7 +108,6 @@ public class SignUpFragment extends Fragment {
     }
     public void register(View v) {
         if(!validateUsername() || !validatePassword() || !validateRepeatPass()) {
-
             return;
         }
         LoginSignUpModel signUpModel = new LoginSignUpModel(getUsername(),

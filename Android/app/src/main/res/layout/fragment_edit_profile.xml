@@ -40,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
+            android:id="@+id/editTextName"
             android:background="@color/white"
             android:inputType="text"
             android:padding="20dp"
@@ -57,23 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Age"
-            android:background="@color/white"
-            android:inputType="text"
-            android:padding="20dp"
-            android:textColor="@color/black"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/black"
-        android:padding="10dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Alcohol intake per week"
+            android:id="@+id/editTextAge"
             android:background="@color/white"
             android:inputType="text"
             android:padding="20dp"

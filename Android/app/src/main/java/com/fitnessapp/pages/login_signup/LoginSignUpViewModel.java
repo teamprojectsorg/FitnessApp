@@ -25,7 +25,6 @@ public class LoginSignUpViewModel extends ViewModel {
         this.loginResponse = loginSignUpRepository.getLoginResponse();
         this.sharedPreferencesRepository = new SharedPreferencesRepository();
         isLoggedIn = sharedPreferencesRepository.getLoggedIn();
-
     }
 
     public void signUp(LoginSignUpModel signUpModel)

@@ -102,7 +102,7 @@
             android:layout_marginTop="10dp"/>
     </RelativeLayout>
 
-        <RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -129,39 +129,38 @@
         android:layout_width="120dp"
         android:layout_height="60sp"
         android:text="Submit"
-        android:onClick="submit"
         android:textSize="20sp"
         android:layout_margin="70sp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#7a0eeb"/>
 
- <!--   <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+    <!--   <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:padding="20dp"
+           android:layout_marginTop="40dp"
+           android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="120dp"
-            android:layout_height="60sp"
-            android:text="Cancel"
-            android:onClick="cancel"
-            android:textSize="20sp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#7a0eeb"/>
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="130dp"
-            android:layout_height="60sp"
-            android:text="Save"
-            android:onClick="save"
-            android:textSize="20sp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#7a0eeb"
-            android:layout_margin="50dp"/>
-    </LinearLayout> -->
+           <Button
+               android:id="@+id/btnCancel"
+               android:layout_width="120dp"
+               android:layout_height="60sp"
+               android:text="Cancel"
+               android:onClick="cancel"
+               android:textSize="20sp"
+               android:layout_gravity="center_horizontal"
+               android:backgroundTint="#7a0eeb"/>
+           <Button
+               android:id="@+id/btnSave"
+               android:layout_width="130dp"
+               android:layout_height="60sp"
+               android:text="Save"
+               android:onClick="save"
+               android:textSize="20sp"
+               android:layout_gravity="center_horizontal"
+               android:backgroundTint="#7a0eeb"
+               android:layout_margin="50dp"/>
+       </LinearLayout> -->
 
 
 

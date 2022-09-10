@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="in ML"
+                android:id="@+id/editTextCurrentIntake"
                 android:background="@color/white"
                 android:inputType="number"
                 android:textColor="@color/black"/>
@@ -66,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="in ML"
+                android:id="@+id/editTextPreviousIntake"
                 android:background="@color/white"
                 android:inputType="number"
                 android:textColor="@color/black"/>
@@ -79,12 +81,9 @@
         android:layout_width="match_parent"
         android:layout_height="60sp"
         android:text="Update Preferences"
-        android:onClick="cancel"
+        android:onClick="onUpdateButtonClick"
         android:textSize="15dp"
         android:layout_margin="40sp"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#7a0eeb"/>
-
-
-
 </LinearLayout>
