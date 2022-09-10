@@ -29,7 +29,7 @@ public class ConsumptionRepository {
     public MutableLiveData<NetworkResult<CaptureResponseModel>> liveWeeklyConsumption = new MutableLiveData<>();
     public MutableLiveData<NetworkResult<ApiResponseModel>> liveAddConsumtion = new MutableLiveData<>();
     private String token = "Bearer " + new SharedPreferencesRepository().getToken();
-    int barCount = 8;
+    int barCount = 7;
     public ConsumptionRepository()
     {
         NetworkModule network = new NetworkModule();
