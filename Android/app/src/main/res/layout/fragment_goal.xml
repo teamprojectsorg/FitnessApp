@@ -39,7 +39,7 @@
                 android:hint="in ML"
                 android:id="@+id/editTextCurrentIntake"
                 android:background="@color/white"
-                android:inputType="text"
+                android:inputType="number"
                 android:textColor="@color/black"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -69,7 +69,7 @@
                 android:hint="in ML"
                 android:id="@+id/editTextPreviousIntake"
                 android:background="@color/white"
-                android:inputType="text"
+                android:inputType="number"
                 android:textColor="@color/black"/>
 
         </com.google.android.material.textfield.TextInputLayout>
