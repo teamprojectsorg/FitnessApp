@@ -20,16 +20,16 @@ import retrofit2.Response;
 public class ProgressRepository {
     public ProgressAPI progressAPI;
 
-    public MutableLiveData<NetworkResult<DiseaseResponseModel>> liveGetDiseaseRisk = new MutableLiveData<>();
+    public MutableLiveData<NetworkResult<CaptureResponseModel>> liveGetLifetimeDailyConsumption = new MutableLiveData<>();
     private String token = "Bearer " + new SharedPreferencesRepository().getToken();
 public ProgressRepository()
 {
     NetworkModule network = new NetworkModule();
     progressAPI = network.providesProgressAPI();
 }
-    public void getDiseaseRisk()
+    public void getLifetimeDailyConsumption()
     {
-        liveGetDiseaseRisk.postValue(new LoadingResult<>());
+        liveGetLifetimeDailyConsumption.postValue(new LoadingResult<>());
         Callback callBack  = new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
@@ -41,29 +41,29 @@ public ProgressRepository()
                 new Exception(t);
             }
         };
-        Call call = progressAPI.getDiseaseRisk(token);
+        Call call = progressAPI.getLifeTimeDailyConsumption(token);
         call.enqueue(callBack);
     }
     private void handleGetDiseaseRiskResponse(Response response)
     {
         if(response.isSuccessful() && response.body() != null)
         {
-            liveGetDiseaseRisk.postValue(new SuccessResult(response.body()));
+            liveGetLifetimeDailyConsumption.postValue(new SuccessResult(response.body()));
         }
         else if(response.errorBody()!=null)
         {
             try {
                 JSONObject json = new JSONObject(response.errorBody().string());
-                liveGetDiseaseRisk.postValue(new ErrorResult(json.getString("message")));
+                liveGetLifetimeDailyConsumption.postValue(new ErrorResult(json.getString("message")));
             }
             catch (Exception ex)
             {
-                liveGetDiseaseRisk.postValue(new ErrorResult(response.message()));
+                liveGetLifetimeDailyConsumption.postValue(new ErrorResult(response.message()));
             }
         }
         else
         {
-            liveGetDiseaseRisk.postValue(new ErrorResult(response.message()));
+            liveGetLifetimeDailyConsumption.postValue(new ErrorResult(response.message()));
         }
     }
 }

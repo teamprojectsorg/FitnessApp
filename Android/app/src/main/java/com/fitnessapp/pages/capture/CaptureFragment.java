@@ -31,14 +31,14 @@ public class CaptureFragment extends Fragment {
 
     Spinner spinner , spinner1, spinnerAlcohol, quantitySpinner;
     CaptureViewModel viewModel;
-    String[] alcohol_percentage_beer = {"2.7%","3.5%","4.8%"};
-    String[] alcohol_percentage_whisky = {"5.0%","7.0%","40%"};
-    String[] alcohol_percentage_wine = {"11.5%","13.5%","17.5%"};
+    String[] alcohol_percentage_beer = {"2.7","3.5","4.8"};
+    String[] alcohol_percentage_whisky = {"5.0","7.0","40"};
+    String[] alcohol_percentage_wine = {"11.5","13.5","17.5"};
     String[] intakemood = {"Happy", "Sad", "Angry", "Occasionally", "Nothing/Fun" };
     String[] intaketype = { "Beer", "Whiskey", "Wine"};
-    String[] beerQuantity = {"285ml", "375ml", "425ml"};
-    String[] whiskyQuantity = {"30ml", "275ml", "700ml"};
-    String[] wineQuantity = {"100ml", "150ml", "750ml"};
+    String[] beerQuantity = {"285", "375", "425"};
+    String[] whiskyQuantity = {"30", "275", "700"};
+    String[] wineQuantity = {"100", "150", "750"};
 
     FragmentCaptureBinding viewBinding;
 
@@ -215,13 +215,13 @@ public class CaptureFragment extends Fragment {
 
     public void save(View v)
     {
-        //TODO Handel dropdowns
         CaptureModel capture = new CaptureModel();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             capture.date = LocalDate.now().toString();
         }
         capture.drinkName = viewBinding.spinner.getSelectedItem().toString();
-        //capture.drinkIntake = viewBinding.editTextQuantity.getText().toString();
+        capture.drinkIntake = viewBinding.spinnerQuantity.getSelectedItem().toString();
+        capture.alcoholPercentage = viewBinding.spinnerAlcoholPercentage.getSelectedItem().toString();
         capture.drinkIntension = viewBinding.spinnerwhy.getSelectedItem().toString();
         viewModel.addCapture(capture);
     }
