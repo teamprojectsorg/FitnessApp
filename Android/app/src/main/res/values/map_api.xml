@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="map_key" translatable="false"></string>
+    <string name="map_key" translatable="false">
+        AIzaSyDm6g2QPpdL8lKkJ1tlO20CHCDCGxbk66Y
+    </string>
 </resources>
