@@ -20,21 +20,27 @@ import com.fitnessapp.pages.capture.models.CaptureModel;
 import com.fitnessapp.pages.capture.CaptureViewModel;
 import com.fitnessapp.pages.capture.models.CaptureResponseModel;
 import com.fitnessapp.pages.goals.PreferenceViewModel;
+import com.fitnessapp.pages.goals.models.PreferenceResponseModel;
 import com.fitnessapp.pages.goals.models.PrefernceModel;
+import com.fitnessapp.utils.Constants;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class ProgressFragment extends Fragment {
     FragmentProgressBinding viewBinding;
 
+    GraphView graphView;
     CaptureViewModel viewModel;
     CaptureModel[] dailyData;
     CaptureModel[] weeklyData;
-
+    CaptureModel[] lifetimeData;
+    ProgressViewModel progressViewModel;
+    PreferenceViewModel preferenceViewModel;
     public ProgressFragment() {
     }
 
@@ -44,6 +50,12 @@ public class ProgressFragment extends Fragment {
         viewModel = new CaptureViewModel();
         viewModel.getWeeklyCapture();
         viewModel.getDailyCapture();
+
+        progressViewModel = new ProgressViewModel();
+        progressViewModel.getLifetimeDailyConsumption();
+
+        preferenceViewModel = new PreferenceViewModel();
+        preferenceViewModel.getPreferences();
     }
 
     @Override
@@ -63,15 +75,56 @@ public class ProgressFragment extends Fragment {
     private void initObservers(View v) {
         viewModel.liveGetDailyConsumption.observe(getViewLifecycleOwner(),
                 (it) -> {
-                    handelObserver(it,viewBinding.graphViewDaily,"Daily Intake",Color.YELLOW);
+                    handelBarGraphObserver(it,viewBinding.graphViewDaily,"Daily Intake",Color.YELLOW);
                 });
         viewModel.liveGetWeeklyConsumption.observe(getViewLifecycleOwner(),
                 (it) -> {
-                    handelObserver(it,viewBinding.graphViewWeekly,"Weekly Intake",Color.BLUE);
+                    handelBarGraphObserver(it,viewBinding.graphViewWeekly,"Weekly Intake",Color.BLUE);
                 });
+        progressViewModel.liveGetLifetimeDailyConsumption.observe(getViewLifecycleOwner(),
+                (it)->{
+                    handleLineGraphObserver(it);
+                });
+        preferenceViewModel.liveGetPreference.observe(getViewLifecycleOwner(),
+                (it)->handleTargetLineObserver(it));
+    }
+    void handleTargetLineObserver(NetworkResult<PreferenceResponseModel> it)
+    {
+        if (it.getClass().equals((SuccessResult.class))) {
+            String targetString = preferenceViewModel.liveGetPreference.getValue().getData().data.currentIntake;
+            if(targetString!=null)
+            {
+                int target = Integer.parseInt(targetString);
+                initTargetLine(target);
+            }
+            else
+            {
+                new AlertDialog.Builder(this.getContext())
+                        .setTitle("Message")
+                        .setMessage("Please enter target alcohol %")
+                        .show();
+            }
+        } else if (it.getClass().equals((ErrorResult.class))) {
+            new AlertDialog.Builder(this.getContext())
+                    .setTitle("Error")
+                    .setMessage(it.getMessage())
+                    .show();
+        }
+    }
+    void handleLineGraphObserver(NetworkResult<CaptureResponseModel> it)
+    {
+        if (it.getClass().equals((SuccessResult.class))) {
+            lifetimeData = progressViewModel.liveGetLifetimeDailyConsumption.getValue().getData().data;
+            initLineGraph();
+        } else if (it.getClass().equals((ErrorResult.class))) {
+            new AlertDialog.Builder(this.getContext())
+                    .setTitle("Error")
+                    .setMessage(it.getMessage())
+                    .show();
+        }
     }
 
-    void handelObserver(NetworkResult<CaptureResponseModel> it,GraphView graphView,String title,Integer barColorNumber) {
+    void handelBarGraphObserver(NetworkResult<CaptureResponseModel> it,GraphView graphView,String title,Integer barColorNumber) {
         if (it.getClass().equals((SuccessResult.class))) {
             setData();
             initGraph(graphView,title,barColorNumber);
@@ -95,6 +148,31 @@ public class ProgressFragment extends Fragment {
             weeklyData = weeklyResponse.data;
         }
     }
+    void initTargetLine(int target)
+    {
+        DataPoint[] dp = new DataPoint[Constants.BAR_COUNT];
+        for (int i = 0; i < Constants.BAR_COUNT; i++) {
+            dp[i] = new DataPoint(i, target);
+        }
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dp);
+
+        viewBinding.graphViewWeekly.addSeries(series);
+    }
+    void initLineGraph()
+    {
+        graphView = viewBinding.lineGraphView;
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(getDataPoint(lifetimeData));
+        series.setDataPointsRadius(10);
+        series.setDrawDataPoints(true);
+        graphView.addSeries(series);
+        graphView.setTitle("Lifetime Intake");
+        graphView.setTitleColor(Color.BLACK);
+        graphView.setTitleTextSize(50);
+        //axis titles
+        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
+        gridLabel.setVerticalAxisTitle("Alcohol Intake");
+    }
 
     private void initGraph(GraphView graphView,String title,Integer barColorNumber) {
         CaptureModel[] data;
@@ -111,7 +189,6 @@ public class ProgressFragment extends Fragment {
         gridLabel.setVerticalAxisTitle("Alcohol Intake");
         gridLabel.setHorizontalAxisTitleTextSize(40);
 
-        graphView.removeAllSeries();
         BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint(data));
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
@@ -147,7 +224,7 @@ public class ProgressFragment extends Fragment {
     private DataPoint[] getDataPoint(CaptureModel[] data) {
         DataPoint[] dp = new DataPoint[data.length];
         for (int i = 0; i < data.length; i++) {
-            dp[i] = new DataPoint(i, Integer.parseInt(data[i].drinkIntake));
+            dp[i] = new DataPoint(i, Double.parseDouble(data[i].drinkIntake));
         }
         return dp;
     }

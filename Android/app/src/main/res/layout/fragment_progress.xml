@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="10dp">
     <com.jjoe64.graphview.GraphView
@@ -16,7 +16,14 @@
         android:backgroundTint="#30ffffff"
         android:outlineSpotShadowColor="@color/black"
         android:layout_height="300sp"
-        android:layout_width="match_parent"/>
+        android:layout_width="wrap_content"/>
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/lineGraphView"
+            android:layout_width="wrap_content"
+            android:backgroundTint="#30ffffff"
+            android:outlineSpotShadowColor="@color/black"
+            android:layout_height="300sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +33,7 @@
                 android:backgroundTint="#30ffffff"
                 android:outlineSpotShadowColor="@color/black"
                 android:layout_height="300sp"
-                android:layout_width="match_parent"/>
+                android:layout_width="wrap_content"/>
         </LinearLayout>
 
         <GridLayout

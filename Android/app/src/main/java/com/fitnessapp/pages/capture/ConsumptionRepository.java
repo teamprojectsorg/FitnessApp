@@ -13,6 +13,7 @@ import com.fitnessapp.network.results.SuccessResult;
 import com.fitnessapp.pages.capture.models.CaptureModel;
 import com.fitnessapp.pages.capture.models.CaptureResponseModel;
 import com.fitnessapp.repositories.SharedPreferencesRepository;
+import com.fitnessapp.utils.Constants;
 
 import org.json.JSONObject;
 
@@ -29,7 +30,7 @@ public class ConsumptionRepository {
     public MutableLiveData<NetworkResult<CaptureResponseModel>> liveWeeklyConsumption = new MutableLiveData<>();
     public MutableLiveData<NetworkResult<ApiResponseModel>> liveAddConsumtion = new MutableLiveData<>();
     private String token = "Bearer " + new SharedPreferencesRepository().getToken();
-    int barCount = 7;
+    int barCount = Constants.BAR_COUNT;
     public ConsumptionRepository()
     {
         NetworkModule network = new NetworkModule();

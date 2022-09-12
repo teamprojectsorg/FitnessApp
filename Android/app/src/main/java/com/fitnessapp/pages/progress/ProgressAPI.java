@@ -8,6 +8,6 @@ import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface ProgressAPI {
-    @GET("user/diseaseRisk")
-    Call<DiseaseResponseModel> getDiseaseRisk(@Header("Authorization") String token);
+    @GET("consumption/lifetime")
+    Call<CaptureResponseModel> getLifeTimeDailyConsumption(@Header("Authorization") String token);
 }

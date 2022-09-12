@@ -43,7 +43,7 @@
             android:id="@+id/Intake"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Type of Alcohol:"
+            android:text="Type of Alcohol"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -66,7 +66,7 @@
             android:id="@+id/quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quantity:"
+            android:text="Quantity in ml"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -89,8 +89,7 @@
             android:id="@+id/alcohol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Alcohol percentage(if applicable)
-"
+            android:text="Alcohol %"
             android:textColor="@color/black"
             android:textSize="20sp" />
         <Spinner
