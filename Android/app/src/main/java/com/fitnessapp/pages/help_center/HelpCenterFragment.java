@@ -116,10 +116,20 @@ public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
                 @Override
                 public void onComplete(@NonNull Task task) {
                     Location location = (Location) locationTask.getResult();
-                    currentLatLng = new LatLng(location.getLatitude(),location.getLongitude());
-                    moveCamera(currentLatLng,
-                            DEFAULT_ZOOM);
-                    sendApiRequest(currentLatLng);
+                    if(location!=null)
+                    {
+                        currentLatLng = new LatLng(location.getLatitude(),location.getLongitude());
+                        moveCamera(currentLatLng,
+                                DEFAULT_ZOOM);
+                        sendApiRequest(currentLatLng);
+                    }
+                    else
+                    {
+                        new AlertDialog.Builder(context)
+                                .setTitle("Error")
+                                .setMessage("Please enable location")
+                                .show();
+                    }
                 }
             });
 
