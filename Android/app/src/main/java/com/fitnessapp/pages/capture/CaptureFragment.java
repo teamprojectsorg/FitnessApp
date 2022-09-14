@@ -143,6 +143,7 @@ public class CaptureFragment extends Fragment {
             capture.date = LocalDate.now().toString();
         }
         capture.drinkName = intaketype[selectedIntakeType];
+
         capture.drinkIntake = getDrinkIntake();
         capture.alcoholPercentage = viewBinding.spinnerAlcoholPercentage.getSelectedItem().toString();
         capture.drinkIntension = intakemood[selectedEmotion];
