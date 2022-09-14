@@ -274,6 +274,7 @@ void getPlaceDetails(LocationResponseModel.Location location,
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        initMap(mMap);
         initInfoWindow(mMap);
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getContext(),
@@ -286,6 +287,10 @@ void getPlaceDetails(LocationResponseModel.Location location,
         }
         getDeviceLocation();
         mMap.setMyLocationEnabled(true);
+    }
+    void initMap(GoogleMap map)
+    {
+        map.getUiSettings().setZoomControlsEnabled(true);
     }
     void initInfoWindow(GoogleMap mMap)
     {

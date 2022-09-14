@@ -25,11 +25,14 @@ import com.fitnessapp.pages.goals.models.PrefernceModel;
 import com.fitnessapp.utils.Constants;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.util.ArrayList;
 
 public class ProgressFragment extends Fragment {
     FragmentProgressBinding viewBinding;
@@ -156,13 +159,21 @@ public class ProgressFragment extends Fragment {
         }
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dp);
+        series.setTitle("Target");
 
-        viewBinding.graphViewWeekly.addSeries(series);
+        GraphView graphView = viewBinding.graphViewWeekly;
+        graphView.addSeries(series);
+
+        LegendRenderer legendRenderer = graphView.getLegendRenderer();
+        legendRenderer.setVisible(true);
+        legendRenderer.setAlign(LegendRenderer.LegendAlign.TOP);
+        legendRenderer.setBackgroundColor(Color.TRANSPARENT);
     }
     void initLineGraph()
     {
         graphView = viewBinding.lineGraphView;
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(getDataPoint(lifetimeData));
+        DataPoint[] dataPoints = getDataPoint(lifetimeData,false);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPoints);
         series.setDataPointsRadius(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.GREEN);
@@ -190,11 +201,13 @@ public class ProgressFragment extends Fragment {
         gridLabel.setVerticalAxisTitle("Alcohol Intake");
         gridLabel.setHorizontalAxisTitleTextSize(40);
 
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint(data));
+        DataPoint[] dataPoints = getDataPoint(data,true);
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(dataPoints);
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
         series.setSpacing(25);
         series.setColor(barColorNumber);
+        series.setTitle("Alcohol Intake");
         graphView.addSeries(series);
 
         String[] dates = getDates(data);
@@ -203,8 +216,11 @@ public class ProgressFragment extends Fragment {
 
         graphView.getGridLabelRenderer().setHorizontalLabelsAngle(120);
         graphView.getGridLabelRenderer().setLabelHorizontalHeight(200);
-        graphView.getViewport().setXAxisBoundsManual(true);
         graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+        graphView.getViewport().setMinX(0);
+        graphView.getViewport().setMaxX(Constants.BAR_COUNT-1);
+        graphView.getViewport().setXAxisBoundsManual(true);
 
         graphView.setTitle(title);
         graphView.setTitleColor(Color.BLACK);
@@ -222,12 +238,19 @@ public class ProgressFragment extends Fragment {
     }
 
 
-    private DataPoint[] getDataPoint(CaptureModel[] data) {
-        DataPoint[] dp = new DataPoint[data.length];
+    private DataPoint[] getDataPoint(CaptureModel[] data,boolean forBar) {
+        ArrayList<DataPoint> dataPointsList = new ArrayList<>();
         for (int i = 0; i < data.length; i++) {
-            dp[i] = new DataPoint(i, Double.parseDouble(data[i].drinkIntake));
+            double intake = Double.parseDouble(data[i].drinkIntake);
+            if(forBar) {
+                if (intake != 0) {
+                    dataPointsList.add(new DataPoint(i, intake));
+                }
+            }
+            else {dataPointsList.add(new DataPoint(i, intake));}
         }
-        return dp;
+        DataPoint[] dataPointsArray = new DataPoint[dataPointsList.size()];
+        return dataPointsList.toArray(dataPointsArray);
     }
 
     private DataPoint[] getStaticDataPoint() {

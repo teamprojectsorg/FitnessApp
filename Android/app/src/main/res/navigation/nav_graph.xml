@@ -85,7 +85,11 @@
         android:id="@+id/goalFragment"
         android:name="com.fitnessapp.pages.goals.GoalFragment"
         android:label="fragment_goal"
-        tools:layout="@layout/fragment_goal" />
+        tools:layout="@layout/fragment_goal" >
+        <action
+            android:id="@+id/action_goalFragment_to_progressFragment"
+            app:destination="@id/progressFragment" />
+    </fragment>
     <fragment
         android:id="@+id/helpCenterFragment"
         android:name="com.fitnessapp.pages.help_center.HelpCenterFragment"

@@ -49,7 +49,7 @@
         android:id="@+id/btnUpdate"
         android:layout_width="match_parent"
         android:layout_height="60sp"
-        android:text="Update Preferences"
+        android:text="Set Goal"
         android:onClick="onUpdateButtonClick"
         android:textSize="15dp"
         android:layout_margin="40sp"

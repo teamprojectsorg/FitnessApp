@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -56,10 +57,9 @@ public class GoalFragment extends Fragment {
     {
         if(it.getClass().equals((SuccessResult.class)))
         {
-            new AlertDialog.Builder(this.getContext())
-                    .setTitle("Success")
-                    .setMessage("Data Saved")
-                    .show();
+            NavController navController = Navigation.findNavController(viewBinding.getRoot());
+            navController.popBackStack();
+            navController.navigate(R.id.progressFragment);
         }
         else if(it.getClass().equals((ErrorResult.class)))
         {
@@ -101,7 +101,27 @@ public class GoalFragment extends Fragment {
     public void onUpdateButtonClick(View v)
     {
         PrefernceModel prefernce = new PrefernceModel();
-        prefernce.currentIntake = viewBinding.editTextCurrentIntake.getText().toString();
-        preferenceViewModel.putPreferences(prefernce);
+        String value =viewBinding.editTextCurrentIntake.getText().toString();
+        try {
+            int target = Integer.parseInt(value);
+            if(target<700 && target>0) {
+                prefernce.currentIntake = value;
+                preferenceViewModel.putPreferences(prefernce);
+            }
+            else
+            {
+                new AlertDialog.Builder(this.getContext())
+                        .setTitle("Message")
+                        .setMessage("please provide sensible value")
+                        .show();
+            }
+        }
+        catch (Exception e)
+        {
+            new AlertDialog.Builder(this.getContext())
+                    .setTitle("Error")
+                    .setMessage("please provide correct value")
+                    .show();
+        }
     }
 }
