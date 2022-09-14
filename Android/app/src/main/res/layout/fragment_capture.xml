@@ -42,10 +42,18 @@
                 android:src="@drawable/ic_launcher_foreground" />
 
         </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your consumption:"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="10sp">
             <TextView
                 android:id="@+id/Intake"
                 android:layout_width="match_parent"
@@ -54,68 +62,70 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
-
-            <RadioGroup
-                android:id="@+id/group_alcohol"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10sp">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/alcohol_beer_icon"/>
+                <ImageView
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_margin="10sp"
+                    android:src="@drawable/alcohol_beer_icon"/>
+                <ImageView
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_margin="10sp"
+                    android:src="@drawable/alcohol_whisky_icon"/>
+                <ImageView
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:layout_margin="10sp"
+                    android:src="@drawable/alcohol_wine_icon"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+              <RadioGroup
+                  android:id="@+id/alcohol_group"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+                  <RadioButton
+                      android:id="@+id/alcohol_beer"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Beer"
+                      android:textSize="20sp"
+                      android:layout_marginLeft="20sp"
+                      android:textColor="@color/black"/>
+                  <RadioButton
+                      android:id="@+id/alcohol_whisky"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Whisky"
+                      android:textSize="20sp"
+                      android:layout_marginLeft="30sp"
+                      android:textColor="@color/black" />
+                  <RadioButton
+                      android:id="@+id/alcohol_wine"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Wine"
+                      android:textSize="20sp"
+                      android:layout_marginLeft="30sp"
+                      android:textColor="@color/black"/>
+              </RadioGroup>
 
-                    <RadioButton
-                        android:id="@+id/alcohol_beer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10sp">
-                    <ImageView
-                        android:layout_width="80sp"
-                        android:layout_height="96sp"
-                        android:src="@drawable/alcohol_whisky_icon"/>
-
-                    <RadioButton
-                        android:id="@+id/alcohol_whisky"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10sp">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/alcohol_wine_icon"/>
-
-                    <RadioButton
-                        android:id="@+id/alcohol_wine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+            </LinearLayout>
 
 
-            </RadioGroup>
-
-        </LinearLayout>
-
+        <LinearLayout
+            android:id="@+id/dropdown_parent_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,6 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Quantity in ml"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -150,16 +161,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Alcohol %"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
             <Spinner
                 android:id="@+id/spinner_alcohol_percentage"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/alcohol"
-                android:background="@android:drawable/btn_dropdown"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:background="@android:drawable/btn_dropdown" />
         </RelativeLayout>
+
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -173,84 +188,73 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <RadioGroup
-                android:id="@+id/group_emotion"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <LinearLayout
+
+                <ImageView
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_margin="10sp"
+                    android:src="@drawable/happy_icon"/>
+
+                <ImageView
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_margin="10sp"
+                    android:src="@drawable/sad_icon"/>
+                <ImageView
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_margin="10sp"
+                    android:src="@drawable/angry_icon"/>
+                <ImageView
+                    android:layout_width="65sp"
+                    android:layout_height="65sp"
+                    android:layout_margin="10sp"
+                    android:src="@drawable/occasionally_icon"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioGroup
+                    android:id="@+id/emotion_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10sp">
-                    <ImageView
-                        android:layout_width="65sp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/happy_icon"/>
-
+                    android:orientation="horizontal">
                     <RadioButton
                         android:id="@+id/emotion_happy"
-                        android:layout_marginLeft="5sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10sp">
-                    <ImageView
-                        android:layout_width="65sp"
-                        android:layout_height="50sp"
-                        android:src="@drawable/sad_icon"/>
-
+                        android:text="Happy"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"/>
                     <RadioButton
                         android:id="@+id/emotion_sad"
-                        android:layout_marginLeft="5sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10sp">
-                    <ImageView
-                        android:layout_width="65sp"
-                        android:layout_height="49sp"
-                        android:src="@drawable/angry_icon"/>
-
-                    <RadioButton
-                        android:id="@+id/emotion_occasion"
-                        android:layout_marginLeft="5sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="10sp">
-                    <ImageView
-                        android:layout_width="65sp"
-                        android:layout_height="49sp"
-                        android:src="@drawable/occasionally_icon"/>
-
+                        android:text="Sad"
+                        android:textSize="20sp"
+                        android:textColor="@color/black" />
                     <RadioButton
                         android:id="@+id/emotion_angry"
-                        android:layout_marginLeft="5sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"/>
-                </LinearLayout>
-
-            </RadioGroup>
+                        android:text="Angry"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"/>
+                    <RadioButton
+                        android:id="@+id/emotion_occasionally"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Occasionally"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"/>
+                </RadioGroup>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -264,6 +268,8 @@
             android:layout_gravity="center_horizontal"
             android:backgroundTint="#7a0eeb"/>
 
+        </LinearLayout>
+    </LinearLayout>
 
     </LinearLayout>
 

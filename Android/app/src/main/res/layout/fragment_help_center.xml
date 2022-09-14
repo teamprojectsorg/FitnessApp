@@ -3,9 +3,143 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:id="@+id/helpCenterMainLinearLayout"
     tools:context=".pages.help_center.HelpCenterFragment">
 
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                            android:layout_margin="10sp"
+                            android:padding="10sp">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:elevation="10sp"
+                                    app:cardCornerRadius="12sp">
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Alcoholism Community"
+                                                    android:textColor="@color/black"
+                                                    android:textStyle="bold"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="\nInformation and support \n for those affected by \nalcoholism/Alcohol Use Disorder.\nIf you are concerned about alcohol's \neffect on your life or a loved\n one's life, please feel welcome"
+                                                    android:textColor="@color/black"
+                                                    android:textStyle="bold"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="know more #alcoholism"
+                                                    android:textColor="#2352de"/>
+                                        </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Alcoholism Community"
+                                                    android:textColor="@color/black"
+                                                    android:textStyle="bold"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="\nInformation and support \n for those affected by \nalcoholism/Alcohol Use Disorder.\nIf you are concerned about alcohol's \neffect on your life or a loved\n one's life, please feel welcome"
+                                                    android:textColor="@color/black"
+                                                    android:textStyle="bold"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="know more #alcoholism"
+                                                    android:textColor="#2352de"/>
+                                        </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Alcoholism Community"
+                                                    android:textColor="@color/black"
+                                                    android:textStyle="bold"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="\nInformation and support \n for those affected by \nalcoholism/Alcohol Use Disorder.\nIf you are concerned about alcohol's \neffect on your life or a loved\n one's life, please feel welcome"
+                                                    android:textColor="@color/black"
+                                                    android:textStyle="bold"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="know more #alcoholism"
+                                                    android:textColor="#2352de"/>
+                                        </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Alcoholism Community"
+                                                    android:textColor="@color/black"
+                                                    android:textStyle="bold"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="\nInformation and support \n for those affected by \nalcoholism/Alcohol Use Disorder.\nIf you are concerned about alcohol's \neffect on your life or a loved\n one's life, please feel welcome"
+                                                    android:textColor="@color/black"
+                                                    android:textStyle="bold"/>
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="know more #alcoholism"
+                                                    android:textColor="#2352de"/>
+                                        </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+                </HorizontalScrollView>
+                </LinearLayout>
+        </ScrollView>
         <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
