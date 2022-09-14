@@ -1,166 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30sp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#f4f2f5"
     android:orientation="vertical"
+    android:scrollbarStyle="insideInset"
     tools:context=".pages.capture.CaptureFragment">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30sp"
+        android:orientation="vertical">
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_launcher_foreground"/>
+            android:layout_height="wrap_content">
 
-        <TextView
+            <TextView
+                android:id="@+id/title_capture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="Enter Your Intake"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="80sp"
+                android:layout_height="80sp"
+                android:layout_marginStart="0sp"
+                android:layout_marginTop="0sp"
+                android:layout_marginEnd="0sp"
+                android:layout_marginBottom="0sp"
+                android:layout_toRightOf="@+id/title_capture"
+                android:padding="0sp"
+                android:src="@drawable/ic_launcher_foreground" />
+
+        </RelativeLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/Intake"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type of Alcohol"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/group_alcohol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10sp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/alcohol_beer_icon"/>
+
+                    <RadioButton
+                        android:id="@+id/alcohol_beer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10sp">
+                    <ImageView
+                        android:layout_width="80sp"
+                        android:layout_height="96sp"
+                        android:src="@drawable/alcohol_whisky_icon"/>
+
+                    <RadioButton
+                        android:id="@+id/alcohol_whisky"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10sp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/alcohol_wine_icon"/>
+
+                    <RadioButton
+                        android:id="@+id/alcohol_wine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quantity in ml"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinner_quantity"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/quantity"
+                android:layout_marginTop="10dp"
+                android:background="@android:drawable/btn_dropdown" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/alcohol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alcohol %"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+            <Spinner
+                android:id="@+id/spinner_alcohol_percentage"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/alcohol"
+                android:background="@android:drawable/btn_dropdown"
+                android:layout_marginTop="10dp"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/why"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Emotion when consumed"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/group_emotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10sp">
+                    <ImageView
+                        android:layout_width="65sp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/happy_icon"/>
+
+                    <RadioButton
+                        android:id="@+id/emotion_happy"
+                        android:layout_marginLeft="5sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10sp">
+                    <ImageView
+                        android:layout_width="65sp"
+                        android:layout_height="50sp"
+                        android:src="@drawable/sad_icon"/>
+
+                    <RadioButton
+                        android:id="@+id/emotion_sad"
+                        android:layout_marginLeft="5sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10sp">
+                    <ImageView
+                        android:layout_width="65sp"
+                        android:layout_height="49sp"
+                        android:src="@drawable/angry_icon"/>
+
+                    <RadioButton
+                        android:id="@+id/emotion_occasion"
+                        android:layout_marginLeft="5sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="10sp">
+                    <ImageView
+                        android:layout_width="65sp"
+                        android:layout_height="49sp"
+                        android:src="@drawable/occasionally_icon"/>
+
+                    <RadioButton
+                        android:id="@+id/emotion_angry"
+                        android:layout_marginLeft="5sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="120dp"
+            android:layout_height="60sp"
+            android:text="Submit"
+            android:textSize="20sp"
+            android:layout_margin="20sp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="90dp"
-            android:layout_marginTop="20dp"
-            android:text="Enter Your Intake"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
+            android:backgroundTint="#7a0eeb"/>
 
 
+    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/Intake"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Type of Alcohol"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/Intake"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/btn_dropdown" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/quantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Quantity in ml"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/spinner_quantity"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/quantity"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/btn_dropdown" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/alcohol"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Alcohol %"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-        <Spinner
-            android:id="@+id/spinner_alcohol_percentage"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/alcohol"
-            android:background="@android:drawable/btn_dropdown"
-            android:layout_marginTop="10dp"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/why"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Emotion when consumed"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-        <Spinner
-            android:id="@+id/spinnerwhy"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_below="@+id/why"
-            android:background="@android:drawable/btn_dropdown"
-            android:layout_marginTop="10dp"/>
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="120dp"
-        android:layout_height="60sp"
-        android:text="Submit"
-        android:textSize="20sp"
-        android:layout_margin="70sp"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="#7a0eeb"/>
-
-    <!--   <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:padding="20dp"
-           android:layout_marginTop="40dp"
-           android:orientation="horizontal">
-
-           <Button
-               android:id="@+id/btnCancel"
-               android:layout_width="120dp"
-               android:layout_height="60sp"
-               android:text="Cancel"
-               android:onClick="cancel"
-               android:textSize="20sp"
-               android:layout_gravity="center_horizontal"
-               android:backgroundTint="#7a0eeb"/>
-           <Button
-               android:id="@+id/btnSave"
-               android:layout_width="130dp"
-               android:layout_height="60sp"
-               android:text="Save"
-               android:onClick="save"
-               android:textSize="20sp"
-               android:layout_gravity="center_horizontal"
-               android:backgroundTint="#7a0eeb"
-               android:layout_margin="50dp"/>
-       </LinearLayout> -->
-
-
-
-</LinearLayout>
+</ScrollView>
