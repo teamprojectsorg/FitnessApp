@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.fitnessapp.databinding.FragmentCaptureBinding;
@@ -29,7 +30,7 @@ import java.time.LocalDate;
 
 public class CaptureFragment extends Fragment {
 
-    Spinner spinner , spinner1, spinnerAlcohol, quantitySpinner;
+    Spinner spinnerAlcohol, quantitySpinner;
     CaptureViewModel viewModel;
     String[] alcohol_percentage = {"3 - 6","10 - 15","35 - 50"};
     String[] intakemood = {"Happy", "Sad", "Angry", "Occasionally", "Nothing/Fun" };
@@ -43,6 +44,9 @@ public class CaptureFragment extends Fragment {
     int[] wineMl = {100,150};
     String[] wineQuantity = {"standard serving ("+wineMl[0]+"ml)",
             "restaurant serving ("+wineMl[1]+"ml)"};
+    int[] selectedMl;
+    int selectedIntakeType;
+    int selectedEmotion;
 
     FragmentCaptureBinding viewBinding;
 
@@ -56,6 +60,45 @@ public class CaptureFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         bindObserver(view);
+        setListners();
+    }
+    void setListners()
+    {
+        viewBinding.groupAlcohol.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                viewBinding.dropdownParentLayout.setVisibility(true);
+                selectedIntakeType = i;
+                switch (i)
+                {
+                    case 0:
+                        selectedMl = beerMl;
+                        setAlcoholAdapter(beerQuantity);
+                        break;
+                    case 1:
+                        selectedMl = whiskyMl;
+                        setAlcoholAdapter(whiskyQuantity);
+                        break;
+                    case 2:
+                        selectedMl = wineMl;
+                        setAlcoholAdapter(wineQuantity);
+                        break;
+                }
+            }
+        });
+        viewBinding.groupEmotion.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                selectedEmotion = i;
+            }
+        });
+    }
+    void setAlcoholAdapter(String[] data)
+    {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item , data);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerAlcohol.setAdapter(adapter);
     }
 
     @Override
@@ -64,8 +107,7 @@ public class CaptureFragment extends Fragment {
         viewBinding = FragmentCaptureBinding.inflate(inflater,container,false);
 
         viewBinding.btnSubmit.setOnClickListener((v)->save(v));
-      
-        spinner = viewBinding.spinner;
+
         //for quantity
         quantitySpinner = viewBinding.spinnerQuantity;
         //for alcohol percentage
@@ -74,11 +116,6 @@ public class CaptureFragment extends Fragment {
         //type of alcohol spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,intaketype);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        //dependent spinner on type - beer quantity spinner
-        ArrayAdapter<String> adapterQuantityBeer = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item , beerQuantity);
-        adapterQuantityBeer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //dependent spinner on type - whisky spinner
         ArrayAdapter<String> adapterQuantityWhisky = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,whiskyQuantity);
@@ -93,77 +130,8 @@ public class CaptureFragment extends Fragment {
         adapterAlcohol.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerAlcohol.setAdapter(adapterAlcohol);
         //Item selected listener on type of alcohol
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String value = parent.getItemAtPosition(position).toString();
-                if(position==0) {
-                    quantitySpinner.setAdapter(adapterQuantityBeer);
-                    quantitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String value1 = parent.getItemAtPosition(position).toString();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-                }
-                else if(position==1) {
-                    quantitySpinner.setAdapter(adapterQuantityWhisky);
-                    quantitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String value2 = parent.getItemAtPosition(position).toString();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-                }
-                else{
-                    quantitySpinner.setAdapter(adapterQuantityWine);
-                    quantitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String value3 = parent.getItemAtPosition(position).toString();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        //for intake mood
-        spinner1 = viewBinding.spinnerwhy;
-
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,intakemood);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter1);
-
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String value1 = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         return viewBinding.getRoot();
     }
@@ -174,18 +142,18 @@ public class CaptureFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             capture.date = LocalDate.now().toString();
         }
-        capture.drinkName = viewBinding.spinner.getSelectedItem().toString();
+        capture.drinkName = intaketype[selectedIntakeType];
+
         capture.drinkIntake = getDrinkIntake();
         capture.alcoholPercentage = viewBinding.spinnerAlcoholPercentage.getSelectedItem().toString();
-        capture.drinkIntension = viewBinding.spinnerwhy.getSelectedItem().toString();
+        capture.drinkIntension = intakemood[selectedEmotion];
         viewModel.addCapture(capture);
     }
     String getDrinkIntake()
     {
-        //TODO handel for all types
         long longId = viewBinding.spinnerQuantity.getSelectedItemId();
         int selctedItem =(int) longId;
-        return String.valueOf(beerMl[selctedItem]);
+        return String.valueOf(selectedMl[selctedItem]);
     }
     public void cancel(View v)
     {
