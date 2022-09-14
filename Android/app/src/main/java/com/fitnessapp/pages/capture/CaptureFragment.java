@@ -31,14 +31,18 @@ public class CaptureFragment extends Fragment {
 
     Spinner spinner , spinner1, spinnerAlcohol, quantitySpinner;
     CaptureViewModel viewModel;
-    String[] alcohol_percentage_beer = {"2.7","3.5","4.8"};
-    String[] alcohol_percentage_whisky = {"5.0","7.0","40"};
-    String[] alcohol_percentage_wine = {"11.5","13.5","17.5"};
+    String[] alcohol_percentage = {"3 - 6","10 - 15","35 - 50"};
     String[] intakemood = {"Happy", "Sad", "Angry", "Occasionally", "Nothing/Fun" };
     String[] intaketype = { "Beer", "Whiskey", "Wine"};
-    String[] beerQuantity = {"285", "375", "425"};
-    String[] whiskyQuantity = {"30", "275", "700"};
-    String[] wineQuantity = {"100", "150", "750"};
+    int[] beerMl = {285,375,425};
+    String[] beerQuantity = {"small glass ("+beerMl[0]+"ml)",
+            "can/bottle ("+beerMl[1]+"ml)", "large glass ("+beerMl[2]+"ml)"};
+    int[] whiskyMl = {30,60,90};
+    String[] whiskyQuantity = {"small ("+whiskyMl[0]+"ml)",
+            "medium ("+whiskyMl[1]+"ml)", "large ("+whiskyMl[2]+"ml)"};
+    int[] wineMl = {100,150};
+    String[] wineQuantity = {"standard serving ("+wineMl[0]+"ml)",
+            "restaurant serving ("+wineMl[1]+"ml)"};
 
     FragmentCaptureBinding viewBinding;
 
@@ -85,15 +89,9 @@ public class CaptureFragment extends Fragment {
         adapterQuantityWine.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //dependent spinner on type - beer alcohol percentage
-        ArrayAdapter<String> adapterAlcoholBeer = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,alcohol_percentage_beer);
-        adapterAlcoholBeer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //dependent spinner on type - whisky alcohol percentage
-        ArrayAdapter<String> adapterAlcoholWhisky = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,alcohol_percentage_whisky);
-        adapterAlcoholWhisky.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //dependent spinner on type - wine alcohol percentage
-        ArrayAdapter<String> adapterAlcoholWine = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,alcohol_percentage_wine);
-        adapterAlcoholWine.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        ArrayAdapter<String> adapterAlcohol = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,alcohol_percentage);
+        adapterAlcohol.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAlcohol.setAdapter(adapterAlcohol);
         //Item selected listener on type of alcohol
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -105,19 +103,6 @@ public class CaptureFragment extends Fragment {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             String value1 = parent.getItemAtPosition(position).toString();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-                    spinnerAlcohol.setAdapter(adapterAlcoholBeer);
-
-                    spinnerAlcohol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String valueAlcohol = parent.getItemAtPosition(position).toString();
                         }
 
                         @Override
@@ -139,20 +124,6 @@ public class CaptureFragment extends Fragment {
 
                         }
                     });
-                    spinnerAlcohol.setAdapter(adapterAlcoholWhisky);
-
-                    spinnerAlcohol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String valueAlcohol = parent.getItemAtPosition(position).toString();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
                 }
                 else{
                     quantitySpinner.setAdapter(adapterQuantityWine);
@@ -167,23 +138,7 @@ public class CaptureFragment extends Fragment {
 
                         }
                     });
-                    spinnerAlcohol.setAdapter(adapterAlcoholWine);
-
-                    spinnerAlcohol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            String valueAlcohol = parent.getItemAtPosition(position).toString();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
                 }
-
-
             }
 
             @Override
@@ -220,10 +175,17 @@ public class CaptureFragment extends Fragment {
             capture.date = LocalDate.now().toString();
         }
         capture.drinkName = viewBinding.spinner.getSelectedItem().toString();
-        capture.drinkIntake = viewBinding.spinnerQuantity.getSelectedItem().toString();
+        capture.drinkIntake = getDrinkIntake();
         capture.alcoholPercentage = viewBinding.spinnerAlcoholPercentage.getSelectedItem().toString();
         capture.drinkIntension = viewBinding.spinnerwhy.getSelectedItem().toString();
         viewModel.addCapture(capture);
+    }
+    String getDrinkIntake()
+    {
+        //TODO handel for all types
+        long longId = viewBinding.spinnerQuantity.getSelectedItemId();
+        int selctedItem =(int) longId;
+        return String.valueOf(beerMl[selctedItem]);
     }
     public void cancel(View v)
     {
