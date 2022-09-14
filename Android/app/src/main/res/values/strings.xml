@@ -19,6 +19,18 @@
     <string name="in_ml_label">in ML</string>
     <string name="what_intake_label">What did you Intake?</string>
     <string name="percent_alcohol_label">% of Alcohol</string>
+    <string name="alcoholism_community"> Know more <a href="https://www.reddit.com/r/alcoholism">#alcoholism</a></string>
+    <string name="science_kindness_community"> Know more <a href="https://www.reddit.com/r/ScienceAndKindness">#scienceAndKindness</a></string>
+    <string name="stop_drinking_community"> Know more <a href="https://www.reddit.com/r/stopdrinking">#stopDrinking</a></string>
+    <string name="addiction_community"> Know more <a href="https://www.reddit.com/r/addiction">#addiction</a></string>
+    <string name="standard_guide_article"> Read more <a href="https://www.health.gov.au/health-topics/alcohol/about-alcohol/standard-drinks-guide">standard drinks guide</a></string>
+    <string name="whatIs_alcohol_article"> Read more <a href="https://www.health.gov.au/health-topics/alcohol/about-alcohol/what-is-alcohol">what is Alcohol?</a></string>
+    <string name="laws_article"> Read more <a href="https://www.health.gov.au/health-topics/alcohol/about-alcohol/alcohol-laws-in-australia">Alcohol Laws in  Australia</a></string>
+    <string name="quitAlcohol_article"> Read more <a href="https://www.health.gov.au/health-topics/alcohol/about-alcohol/how-can-you-reduce-or-quit-alcohol">Quit Alcohol</a></string>
+    <string name="ADF_contact"><a href="https://adf.org.au/">Alcohol and Drug Foundation</a></string>
+    <string name="ATA_contact"><a href="https://alcoholthinkagain.com.au/">Alcohol. Think again</a></string>
+    <string name="AAAc_contact"><a href="https://www.health.gov.au/contacts/alcoholics-anonymous-aa-australia-contact">Alcoholics Anonymous Australia contact </a></string>
+    <string name="DL_contact"><a href="https://www.health.gov.au/contacts/directline">DirectLine</a></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

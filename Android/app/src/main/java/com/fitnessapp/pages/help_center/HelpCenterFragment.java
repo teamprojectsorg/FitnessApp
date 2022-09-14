@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -79,6 +80,9 @@ public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
     LatLng currentLatLng;
     GoogleMap mMap;
     PlacesClient placesClient;
+    TextView community_alcoholism, community_science, community_stopDrinking,community_addiction,
+            article_alcohol, article_standardDrinks, article_laws, article_quitAlcohol,
+             contact_adf, contact_ata, contact_aaac, contact_dl;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +94,41 @@ public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         viewBinding = FragmentHelpCenterBinding.inflate(inflater, container, false);
 
+        community_alcoholism = viewBinding.alcoholCommunity;
+        community_alcoholism.setMovementMethod(LinkMovementMethod.getInstance());
+
+        community_science = viewBinding.scienceCommunity;
+        community_science.setMovementMethod(LinkMovementMethod.getInstance());
+
+        community_stopDrinking = viewBinding.stopDrinkingCommunity;
+        community_stopDrinking.setMovementMethod(LinkMovementMethod.getInstance());
+
+        community_addiction = viewBinding.addictionCommunity;
+        community_addiction.setMovementMethod(LinkMovementMethod.getInstance());
+
+        article_alcohol = viewBinding.alcoholArticle;
+        article_alcohol.setMovementMethod(LinkMovementMethod.getInstance());
+
+        article_standardDrinks = viewBinding.standardArticle;
+        article_standardDrinks.setMovementMethod(LinkMovementMethod.getInstance());
+
+        article_laws = viewBinding.lawsArticle;
+        article_laws.setMovementMethod(LinkMovementMethod.getInstance());
+
+        article_quitAlcohol = viewBinding.quitArticle;
+        article_quitAlcohol.setMovementMethod(LinkMovementMethod.getInstance());
+
+        contact_adf = viewBinding.adfContact;
+        contact_adf.setMovementMethod(LinkMovementMethod.getInstance());
+
+        contact_ata = viewBinding.ataContact;
+        contact_ata.setMovementMethod(LinkMovementMethod.getInstance());
+
+        contact_aaac = viewBinding.aaaContact;
+        contact_aaac.setMovementMethod(LinkMovementMethod.getInstance());
+
+        contact_dl = viewBinding.dlContact;
+        contact_dl.setMovementMethod(LinkMovementMethod.getInstance());
         //if(isServicesOk()) {
         //initMap();
         //}
