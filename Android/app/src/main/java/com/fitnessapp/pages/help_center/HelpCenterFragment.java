@@ -1,11 +1,7 @@
 package com.fitnessapp.pages.help_center;
 
-import static android.content.ContentValues.TAG;
-
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -16,15 +12,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,22 +26,25 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.fitnessapp.R;
 
-import com.fitnessapp.activities.MainActivity;
 import com.fitnessapp.databinding.FragmentHelpCenterBinding;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.GeoDataClient;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -59,14 +54,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
-    static Context context;
+    Context context;
     private static final float DEFAULT_ZOOM = 9;
-    String URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=50000&keyword=rehabcenter&key=AIzaSyDm6g2QPpdL8lKkJ1tlO20CHCDCGxbk66Y&";
+    String URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=50000&key=AIzaSyDm6g2QPpdL8lKkJ1tlO20CHCDCGxbk66Y&";
     //GoogleMap map;
     FragmentHelpCenterBinding viewBinding;
     FusedLocationProviderClient client;
     LatLng currentLatLng;
     GoogleMap mMap;
+    GeoDataClient geoDataClient;
+    static final LatLngBounds BOUNDS_AUSTRALIA = new LatLngBounds(
+            new LatLng(113.338953078, -43.6345972634),
+            new LatLng(153.569469029, -10.6681857235)
+    );
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,6 +91,10 @@ public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        initDropdown();
+    }
+    void initDropdown()
+    {
 
     }
     private void geoLocate() {
@@ -121,7 +125,6 @@ public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
                         currentLatLng = new LatLng(location.getLatitude(),location.getLongitude());
                         moveCamera(currentLatLng,
                                 DEFAULT_ZOOM);
-                        sendApiRequest(currentLatLng);
                     }
                     else
                     {
@@ -136,10 +139,10 @@ public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
         } catch (SecurityException e) {
         }
     }
-void sendApiRequest(LatLng currentLocation)
+void sendRehabCentersApiRequest(LatLng currentLocation)
 {
     String finalUrl = URL + "location=" + currentLocation.latitude +
-            "," + currentLocation.longitude;
+            "," + currentLocation.longitude + "&keyword=rehabcenters";
 
     RequestQueue requestQueue = Volley.newRequestQueue(this.getContext());
     JsonObjectRequest objectRequest = new JsonObjectRequest(
@@ -166,6 +169,36 @@ void sendApiRequest(LatLng currentLocation)
     );
     requestQueue.add(objectRequest);
 }
+    void sendCitiesApiRequest()
+    {
+        RectangularBounds bounds = RectangularBounds.newInstance(BOUNDS_AUSTRALIA.northeast,BOUNDS_AUSTRALIA.southwest);
+        FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
+                .setLocationBias(bounds)
+                //.setLocationRestriction(bounds)
+                .setOrigin(new LatLng(25.2744,133.7751))
+                .setCountries("AU")
+                .setTypeFilter(TypeFilter.CITIES)
+                .setQuery("australian cities")
+                .build();
+
+        PlacesClient placesClient = Places.c
+        placesClient.findAutocompletePredictions(request).addOnSuccessListener((response) -> {
+            for (AutocompletePrediction prediction : response.getAutocompletePredictions()) {
+                Log.i(TAG, prediction.getPlaceId());
+                Log.i(TAG, prediction.getPrimaryText(null).toString());
+            }
+        }).addOnFailureListener((exception) -> {
+            if (exception instanceof ApiException) {
+                ApiException apiException = (ApiException) exception;
+                Log.e(TAG, "Place not found: " + apiException.getStatusCode());
+            }
+        });
+
+    }
+    void setDropdownValues(LocationResponseModel locations)
+    {
+        //TODO Set Dropdown Values
+    }
 void plotLocations(LocationResponseModel locations)
 {
     for(int i = 0;i<locations.results.size();i++)
@@ -198,7 +231,10 @@ void plotLocations(LocationResponseModel locations)
                     .show();
             return;
         }
-        getDeviceLocation();
+        //getDeviceLocation();
+
+        sendCitiesApiRequest();
+
         mMap.setMyLocationEnabled(true);
     }
    /*
