@@ -17,6 +17,7 @@ public class LocationResponseModel {
     public class Result{
         public Geometry geometry;
         public String name;
+        public String place_id;
     }
 
 }

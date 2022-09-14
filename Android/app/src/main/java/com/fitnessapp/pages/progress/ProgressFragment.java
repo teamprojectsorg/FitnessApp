@@ -165,13 +165,14 @@ public class ProgressFragment extends Fragment {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(getDataPoint(lifetimeData));
         series.setDataPointsRadius(10);
         series.setDrawDataPoints(true);
+        series.setColor(Color.GREEN);
         graphView.addSeries(series);
         graphView.setTitle("Lifetime Intake");
         graphView.setTitleColor(Color.BLACK);
         graphView.setTitleTextSize(50);
         //axis titles
-//        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-//        gridLabel.setVerticalAxisTitle("Alcohol Intake");
+        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
+        gridLabel.setVerticalAxisTitle("Alcohol Intake");
     }
 
     private void initGraph(GraphView graphView,String title,Integer barColorNumber) {
@@ -185,9 +186,9 @@ public class ProgressFragment extends Fragment {
             data = weeklyData;
         }
 
-//        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-//        gridLabel.setVerticalAxisTitle("Alcohol Intake");
-//        gridLabel.setHorizontalAxisTitleTextSize(40);
+        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
+        gridLabel.setVerticalAxisTitle("Alcohol Intake");
+        gridLabel.setHorizontalAxisTitleTextSize(40);
 
         BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(getDataPoint(data));
         series.setDrawValuesOnTop(true);
