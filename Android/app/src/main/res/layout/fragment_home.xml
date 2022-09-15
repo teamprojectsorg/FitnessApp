@@ -182,8 +182,8 @@
                             android:layout_gravity="center_vertical|center_horizontal">
 
                             <ImageView
-                                android:layout_width="70sp"
-                                android:layout_height="70sp"
+                                android:layout_width="60sp"
+                                android:layout_height="50sp"
                                 android:src="@drawable/help_homepage_icon"/>
 
                             <TextView
@@ -207,6 +207,7 @@
                     android:columnCount="2">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/locate_rehab_homepage_card"
                         android:layout_width="80sp"
                         android:layout_height="200sp"
                         android:layout_row="0"
@@ -226,14 +227,14 @@
                             android:layout_gravity="center_vertical|center_horizontal">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/exercise_homepage_icon_3"/>
+                                android:layout_width="60sp"
+                                android:layout_height="60sp"
+                                android:src="@drawable/locate_rehab_homepage_icon"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Exercises"
+                                android:text="Locate Rehabs"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
                                 android:textStyle="bold"
