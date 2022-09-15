@@ -82,7 +82,8 @@ public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
     PlacesClient placesClient;
     TextView community_alcoholism, community_science, community_stopDrinking,community_addiction,
             article_alcohol, article_standardDrinks, article_laws, article_quitAlcohol,
-             contact_adf, contact_ata, contact_aaac, contact_dl;
+             contact_adf, contact_ata, contact_aaac, contact_dl,
+             tel_contact_adf, tel_contact_ata, tel_contact_aaa, tel_contact_dl;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +127,18 @@ public class HelpCenterFragment extends Fragment implements OnMapReadyCallback {
 
         contact_aaac = viewBinding.aaaContact;
         contact_aaac.setMovementMethod(LinkMovementMethod.getInstance());
+
+        contact_dl = viewBinding.dlContact;
+        contact_dl.setMovementMethod(LinkMovementMethod.getInstance());
+
+        tel_contact_adf = viewBinding.adfTelContact;
+        tel_contact_adf.setMovementMethod(LinkMovementMethod.getInstance());
+
+        tel_contact_ata = viewBinding.ataTelContact;
+        tel_contact_ata.setMovementMethod(LinkMovementMethod.getInstance());
+
+        tel_contact_aaa = viewBinding.aaaTelContact;
+        tel_contact_aaa.setMovementMethod(LinkMovementMethod.getInstance());
 
         contact_dl = viewBinding.dlContact;
         contact_dl.setMovementMethod(LinkMovementMethod.getInstance());

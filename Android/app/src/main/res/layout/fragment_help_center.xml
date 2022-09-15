@@ -129,14 +129,15 @@
 
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="180sp"
                                     android:elevation="10sp"
                                     android:layout_margin="10sp"
                                     app:cardCornerRadius="12sp">
                                         <LinearLayout
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:orientation="vertical">
+                                            android:orientation="vertical"
+                                            android:padding="10sp">
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
@@ -154,7 +155,7 @@
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:text="@string/addiction_community"
-                                                    android:textColor="#2352de"/>
+                                                    android:textColor="@color/black"/>
                                         </LinearLayout>
                                 </androidx.cardview.widget.CardView>
 
@@ -174,14 +175,14 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:layout_margin="10sp">
+                                    android:orientation="horizontal">
 
                                         <androidx.cardview.widget.CardView
                                             android:layout_width="wrap_content"
                                             android:layout_height="180sp"
                                             android:elevation="10sp"
-                                            app:cardCornerRadius="12sp">
+                                            app:cardCornerRadius="12sp"
+                                            android:layout_margin="10sp">
                                                 <LinearLayout
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
@@ -292,7 +293,7 @@
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
-                                                            android:text="\nIt's a good idea to see your doctor\n first if you want to quit or stop\n drinking alcohol. They can help\n you to manage any withdrawal symptoms you\n may have."
+                                                            android:text="\nIt's a good idea to see your doctor\n first if you want to quit or stop\n drinking alcohol. They can help\n you to manage any withdrawal\n symptoms you may have."
                                                             android:textColor="@color/black"
                                                             android:textStyle="bold"/>
                                                         <TextView
@@ -321,14 +322,14 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:layout_margin="10sp">
+                                    android:orientation="horizontal">
 
                                         <androidx.cardview.widget.CardView
                                             android:layout_width="wrap_content"
-                                            android:layout_height="180sp"
+                                            android:layout_height="110sp"
                                             android:elevation="10sp"
-                                            app:cardCornerRadius="12sp">
+                                            app:cardCornerRadius="12sp"
+                                            android:layout_margin="10sp">
                                                 <LinearLayout
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
@@ -337,26 +338,48 @@
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
-                                                            android:text="Alcohol and Drug Foundation"
+                                                            android:text="Alcohol and Drug Foundation\n"
                                                             android:textColor="@color/black"
                                                             android:textStyle="bold"/>
-                                                        <TextView
+                                                        <RelativeLayout
                                                             android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="\nThe Alcohol and Drug Foundation\n provides facts, resources and programs\n to help prevent alcohol and other\n drug harm in Australian communities."
-                                                            android:textColor="@color/black"
-                                                            android:textStyle="bold"/>
-                                                        <TextView
-                                                            android:id="@+id/adf_contact"
+                                                            android:layout_height="wrap_content">
+                                                                <ImageView
+                                                                    android:id="@+id/adf_contact_icon"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="20sp"
+                                                                    android:src="@drawable/ic_baseline_phone_enabled_24"/>
+
+                                                                <TextView
+                                                                    android:id="@+id/adf_tel_contact"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_toRightOf="@+id/adf_contact_icon"
+                                                                    android:text="@string/ADF_tel_contact" />
+                                                        </RelativeLayout>
+
+                                                        <RelativeLayout
                                                             android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="@string/ADF_contact"/>
+                                                            android:layout_height="wrap_content">
+                                                                <ImageView
+                                                                    android:id="@+id/adf_web_contact_icon"
+                                                                    android:layout_width="24sp"
+                                                                    android:layout_height="20sp"
+                                                                    android:src="@drawable/web_contact_icon"/>
+                                                                <TextView
+                                                                    android:id="@+id/adf_contact"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_toRightOf="@+id/adf_web_contact_icon"
+                                                                    android:text="@string/ADF_contact"/>
+                                                        </RelativeLayout>
+
                                                 </LinearLayout>
                                         </androidx.cardview.widget.CardView>
 
                                         <androidx.cardview.widget.CardView
                                             android:layout_width="wrap_content"
-                                            android:layout_height="180sp"
+                                            android:layout_height="110sp"
                                             android:elevation="10sp"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
@@ -368,26 +391,48 @@
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
-                                                            android:text="Alcohol.Think Again contact"
+                                                            android:text="Alcohol.Think Again contact\n"
                                                             android:textColor="@color/black"
                                                             android:textStyle="bold"/>
-                                                        <TextView
+                                                        <RelativeLayout
                                                             android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="\nThe 'Alcohol. Think Again' website provides\n resources and information about the\n effects of alcohol on your health.\n There is information for parents,\n young people, and women who\n are pregnant or breastfeeding."
-                                                            android:textColor="@color/black"
-                                                            android:textStyle="bold"/>
-                                                        <TextView
-                                                            android:id="@+id/ata_contact"
+                                                            android:layout_height="wrap_content">
+                                                                <ImageView
+                                                                    android:id="@+id/ata_contact_icon"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="20sp"
+                                                                    android:src="@drawable/ic_baseline_phone_enabled_24"/>
+
+                                                                <TextView
+                                                                    android:id="@+id/ata_tel_contact"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_toRightOf="@+id/ata_contact_icon"
+                                                                    android:text="@string/ATA_tel_contact" />
+                                                        </RelativeLayout>
+
+                                                        <RelativeLayout
                                                             android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="@string/ATA_contact"/>
+                                                            android:layout_height="wrap_content">
+                                                                <ImageView
+                                                                    android:id="@+id/ata_web_contact_icon"
+                                                                    android:layout_width="24sp"
+                                                                    android:layout_height="20sp"
+                                                                    android:src="@drawable/web_contact_icon"/>
+                                                                <TextView
+                                                                    android:id="@+id/ata_contact"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_toRightOf="@+id/ata_web_contact_icon"
+                                                                    android:text="@string/ATA_contact"/>
+                                                        </RelativeLayout>
+
                                                 </LinearLayout>
                                         </androidx.cardview.widget.CardView>
 
                                         <androidx.cardview.widget.CardView
                                             android:layout_width="wrap_content"
-                                            android:layout_height="180sp"
+                                            android:layout_height="110sp"
                                             android:elevation="10sp"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
@@ -399,26 +444,47 @@
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
-                                                            android:text="Alcoholics Anonymous Australia contact"
+                                                            android:text="Alcoholics Anonymous Australia contact\n"
                                                             android:textColor="@color/black"
                                                             android:textStyle="bold"/>
-                                                        <TextView
+                                                        <RelativeLayout
                                                             android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="\nTo find an AA meeting close to\n you or for information about quitting\n or reducing your drinking, contact\n AA or visit their website"
-                                                            android:textColor="@color/black"
-                                                            android:textStyle="bold"/>
-                                                        <TextView
-                                                            android:id="@+id/aaa_contact"
+                                                            android:layout_height="wrap_content">
+                                                                <ImageView
+                                                                    android:id="@+id/aaa_contact_icon"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="20sp"
+                                                                    android:src="@drawable/ic_baseline_phone_enabled_24"/>
+                                                                <TextView
+                                                                    android:id="@+id/aaa_tel_contact"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="@string/AAAc_tel_contact"
+                                                                    android:layout_toRightOf="@+id/aaa_contact_icon"/>
+                                                        </RelativeLayout>
+
+                                                        <RelativeLayout
                                                             android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="@string/AAAc_contact"/>
+                                                            android:layout_height="wrap_content">
+                                                                <ImageView
+                                                                    android:id="@+id/aaa_web_contact_icon"
+                                                                    android:layout_width="24sp"
+                                                                    android:layout_height="20sp"
+                                                                    android:src="@drawable/web_contact_icon"/>
+                                                                <TextView
+                                                                    android:id="@+id/aaa_contact"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_toRightOf="@+id/aaa_web_contact_icon"
+                                                                    android:text="@string/AAAc_contact"/>
+                                                        </RelativeLayout>
+
                                                 </LinearLayout>
                                         </androidx.cardview.widget.CardView>
 
                                         <androidx.cardview.widget.CardView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="180sp"
+                                            android:layout_width="200sp"
+                                            android:layout_height="110sp"
                                             android:elevation="10sp"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
@@ -430,20 +496,41 @@
                                                         <TextView
                                                             android:layout_width="wrap_content"
                                                             android:layout_height="wrap_content"
-                                                            android:text="DirectLine"
+                                                            android:text="DirectLine\n"
                                                             android:textColor="@color/black"
                                                             android:textStyle="bold"/>
-                                                        <TextView
+                                                        <RelativeLayout
                                                             android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="\nContact DirectLine for confidential alcohol\n and drug counselling and referral in\n Victoria Australia. The service is\n available 24/7 by phone or online."
-                                                            android:textColor="@color/black"
-                                                            android:textStyle="bold"/>
-                                                        <TextView
-                                                            android:id="@+id/dl_contact"
+                                                            android:layout_height="wrap_content">
+                                                                <ImageView
+                                                                    android:id="@+id/dl_contact_icon"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="20sp"
+                                                                    android:src="@drawable/ic_baseline_phone_enabled_24"/>
+                                                                <TextView
+                                                                    android:id="@+id/dl_tel_contact"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:text="@string/DL_tel_contact"
+                                                                    android:layout_toRightOf="@+id/dl_contact_icon"/>
+                                                        </RelativeLayout>
+
+                                                        <RelativeLayout
                                                             android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text="@string/DL_contact"/>
+                                                            android:layout_height="wrap_content">
+                                                                <ImageView
+                                                                    android:id="@+id/dl_web_contact_icon"
+                                                                    android:layout_width="24sp"
+                                                                    android:layout_height="20sp"
+                                                                    android:src="@drawable/web_contact_icon"/>
+                                                                <TextView
+                                                                    android:id="@+id/dl_contact"
+                                                                    android:layout_width="wrap_content"
+                                                                    android:layout_height="wrap_content"
+                                                                    android:layout_toRightOf="@+id/dl_web_contact_icon"
+                                                                    android:text="@string/DL_contact"/>
+                                                        </RelativeLayout>
+
                                                 </LinearLayout>
                                         </androidx.cardview.widget.CardView>
 
