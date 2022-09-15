@@ -2,6 +2,8 @@ package com.fitnessapp.pages.progress;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,10 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Optional;
 
 public class ProgressFragment extends Fragment {
     FragmentProgressBinding viewBinding;
@@ -172,20 +178,58 @@ public class ProgressFragment extends Fragment {
     void initLineGraph()
     {
         graphView = viewBinding.lineGraphView;
+
         DataPoint[] dataPoints = getDataPoint(lifetimeData,false);
+
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPoints);
         series.setDataPointsRadius(10);
         series.setDrawDataPoints(true);
         series.setColor(Color.GREEN);
+
         graphView.addSeries(series);
-        graphView.setTitle("Lifetime Intake");
+        graphView.setTitle("All time progress");
         graphView.setTitleColor(Color.BLACK);
         graphView.setTitleTextSize(50);
+
+        String[] dates = getLineGraphDates(lifetimeData);
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
+        staticLabelsFormatter.setHorizontalLabels(dates);
+
+        graphView.getGridLabelRenderer().setHorizontalLabelsAngle(120);
+        graphView.getGridLabelRenderer().setLabelHorizontalHeight(200);
+        graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+        graphView.getViewport().setMinX(0);
+        graphView.getViewport().setMaxX(lifetimeData.length - 1);
+        graphView.getViewport().setXAxisBoundsManual(true);
+
         //axis titles
         GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-        gridLabel.setVerticalAxisTitle("Alcohol Intake");
+        gridLabel.setVerticalAxisTitle("Alcohol Ingest");
+    }
+String[] getLineGraphDates(CaptureModel[] data)
+{
+    int length = 0;
+    if(data.length<Constants.BAR_COUNT)
+    {
+        length = data.length;
+    }
+    else
+    {
+        length = Constants.BAR_COUNT;
+    }
+    String[] dates = new String[length];
+
+    dates[0] = data[0].date;
+    dates[length - 1] = data[data.length -1].date;
+
+    for(int i = 1;i<length -1;i++)
+    {
+        dates[i] = "";
     }
 
+    return dates;
+}
     private void initGraph(GraphView graphView,String title,Integer barColorNumber) {
         CaptureModel[] data;
         if(title.charAt(0) == 'D')
@@ -198,7 +242,7 @@ public class ProgressFragment extends Fragment {
         }
 
         GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-        gridLabel.setVerticalAxisTitle("Alcohol Intake");
+        gridLabel.setVerticalAxisTitle("Alcohol Ingest");
         gridLabel.setHorizontalAxisTitleTextSize(40);
 
         DataPoint[] dataPoints = getDataPoint(data,true);
@@ -207,7 +251,7 @@ public class ProgressFragment extends Fragment {
         series.setValuesOnTopColor(Color.RED);
         series.setSpacing(25);
         series.setColor(barColorNumber);
-        series.setTitle("Alcohol Intake");
+        series.setTitle("Alcohol Ingest");
         graphView.addSeries(series);
 
         String[] dates = getDates(data);
@@ -242,6 +286,7 @@ public class ProgressFragment extends Fragment {
         ArrayList<DataPoint> dataPointsList = new ArrayList<>();
         for (int i = 0; i < data.length; i++) {
             double intake = Double.parseDouble(data[i].drinkIntake);
+            intake = Math.round(intake);
             if(forBar) {
                 if (intake != 0) {
                     dataPointsList.add(new DataPoint(i, intake));

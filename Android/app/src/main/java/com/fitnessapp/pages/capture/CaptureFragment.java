@@ -32,9 +32,10 @@ public class CaptureFragment extends Fragment {
 
     Spinner spinnerAlcohol, quantitySpinner;
     CaptureViewModel viewModel;
-    String[] actualAlcoholPercent = {"6","15","50"};
+    String[] actualAlcoholPercent = {"6","50","15"};
     String[] alcohol_percentage = {"3 - "+actualAlcoholPercent[0],
-            "10 - "+actualAlcoholPercent[1],"35 - "+actualAlcoholPercent[2]};
+            "35 - "+actualAlcoholPercent[1],
+            "10 - "+actualAlcoholPercent[2]};
     String[] intakemood = {"Happy", "Sad", "Angry", "Occasionally", "Nothing/Fun" };
     String[] intaketype = { "Beer", "Whiskey", "Wine"};
     int[] beerMl = {285,375,425};
@@ -49,6 +50,7 @@ public class CaptureFragment extends Fragment {
     int[] selectedMl;
     int selectedIntakeType;
     int selectedEmotion;
+    int selectedAlcoholPercentage;
 
     FragmentCaptureBinding viewBinding;
 
@@ -73,20 +75,30 @@ public class CaptureFragment extends Fragment {
                 int checkedRadioButton = viewBinding.alcoholGroup.getCheckedRadioButtonId();
                 if(checkedRadioButton == viewBinding.alcoholBeer.getId())
                 {
-                    selectedIntakeType = 1;
+                    selectedAlcoholPercentage = 0;
+                    selectedIntakeType = 0;
                     selectedMl = beerMl;
                     setAlcoholAdapter(beerQuantity);
                 }
                 else if(checkedRadioButton == viewBinding.alcoholWhisky.getId()) {
-                    selectedIntakeType = 2;
+                    selectedAlcoholPercentage = 1;
+                    selectedIntakeType = 1;
                     selectedMl = whiskyMl;
                     setAlcoholAdapter(whiskyQuantity);
                 }
                 else if(checkedRadioButton == viewBinding.alcoholWine.getId())
                 {
-                        selectedMl = wineMl;
-                        setAlcoholAdapter(wineQuantity);
+                    selectedAlcoholPercentage = 2;
+                    selectedIntakeType = 2;
+                    selectedMl = wineMl;
+                    setAlcoholAdapter(wineQuantity);
                 }
+
+                ArrayAdapter<String> adapterAlcohol = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_spinner_item,
+                        new String[]{alcohol_percentage[selectedAlcoholPercentage]});
+                adapterAlcohol.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerAlcohol.setAdapter(adapterAlcohol);
             }
         });
         viewBinding.emotionGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -139,7 +151,7 @@ public class CaptureFragment extends Fragment {
         //dependent spinner on type - beer alcohol percentage
         ArrayAdapter<String> adapterAlcohol = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,alcohol_percentage);
         adapterAlcohol.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerAlcohol.setAdapter(adapterAlcohol);
+
         //Item selected listener on type of alcohol
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item,intakemood);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -156,7 +168,7 @@ public class CaptureFragment extends Fragment {
         capture.drinkName = intaketype[selectedIntakeType];
 
         capture.drinkIntake = getDrinkIntake();
-        capture.alcoholPercentage = getAlcoholPercent();
+        capture.alcoholPercentage = actualAlcoholPercent[selectedAlcoholPercentage];
         capture.drinkIntension = intakemood[selectedEmotion];
         viewModel.addCapture(capture);
     }

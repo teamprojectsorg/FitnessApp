@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/FitnessApp/Android/app/src/main/res/drawable-anydpi/help_homepage_icon.xml" value="0.143" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/drawable-v24/edit_profile_icon_foreground.xml" value="0.1" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1695" />
+        <entry key="..\:/FitnessApp/Android/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.143" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1695" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/drawable/progress_btn.xml" value="0.145" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/drawable/setting_menu_icon.xml" value="0.145" />
@@ -14,6 +16,7 @@
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_goal.xml" value="0.2504528985507246" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_help_center.xml" value="0.264" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_locate_rehab.xml" value="0.25416666666666665" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/FitnessApp/Android/app/src/main/res/layout/fragment_progress.xml" value="0.25416666666666665" />

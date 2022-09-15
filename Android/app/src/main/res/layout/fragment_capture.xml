@@ -67,17 +67,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="100sp"
+                    android:layout_width="90sp"
                     android:layout_height="100sp"
                     android:layout_margin="10sp"
                     android:src="@drawable/alcohol_beer_icon"/>
                 <ImageView
-                    android:layout_width="100sp"
+                    android:layout_width="90sp"
                     android:layout_height="100sp"
                     android:layout_margin="10sp"
                     android:src="@drawable/alcohol_whisky_icon"/>
                 <ImageView
-                    android:layout_width="100sp"
+                    android:layout_width="90sp"
                     android:layout_height="100sp"
                     android:layout_margin="10sp"
                     android:src="@drawable/alcohol_wine_icon"/>
@@ -97,7 +97,7 @@
                       android:layout_height="wrap_content"
                       android:text="Beer"
                       android:textSize="20sp"
-                      android:layout_marginLeft="20sp"
+                      android:layout_marginLeft="0sp"
                       android:textColor="@color/black"/>
                   <RadioButton
                       android:id="@+id/alcohol_whisky"
@@ -137,9 +137,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Quantity in ml"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/spinner_quantity"
