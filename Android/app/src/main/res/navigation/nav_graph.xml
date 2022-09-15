@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_homeFragment_to_helpCenterFragment"
             app:destination="@id/helpCenterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_locateRehabFragment"
+            app:destination="@id/locateRehabFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -95,4 +98,9 @@
         android:name="com.fitnessapp.pages.help_center.HelpCenterFragment"
         android:label="fragment_help_center"
         tools:layout="@layout/fragment_help_center" />
+    <fragment
+        android:id="@+id/locateRehabFragment"
+        android:name="com.fitnessapp.pages.locate_rehab.LocateRehabFragment"
+        android:label="fragment_locate_rehab"
+        tools:layout="@layout/fragment_locate_rehab" />
 </navigation>

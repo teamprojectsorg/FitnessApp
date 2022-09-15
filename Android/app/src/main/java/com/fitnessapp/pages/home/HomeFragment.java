@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment {
         viewBinding.progressCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_progressFragment));
         viewBinding.captureCardView.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_captureFragment));
         viewBinding.goalHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_goalFragment));
+        viewBinding.locateRehabHomepageCard.setOnClickListener((v)->Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_locateRehabFragment));
 
         return viewBinding.getRoot();
     }

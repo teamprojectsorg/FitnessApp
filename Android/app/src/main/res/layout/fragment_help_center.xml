@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#f4f2f5"
     android:id="@+id/helpCenterMainLinearLayout"
     tools:context=".pages.help_center.HelpCenterFragment">
 
@@ -19,7 +20,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Communities"
+                            android:text="Reddit Communities"
                             android:textSize="20sp"
                             android:textColor="@color/black"
                             android:textStyle="bold"/>
@@ -35,6 +36,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="180sp"
                                     android:elevation="10sp"
+                                    android:backgroundTint="#f7dddc"
                                     android:layout_margin="10sp"
                                     app:cardCornerRadius="12sp">
                                         <LinearLayout
@@ -67,6 +69,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="180sp"
                                     android:elevation="10sp"
+                                    android:backgroundTint="#fafad4"
                                     android:layout_margin="10sp"
                                     app:cardCornerRadius="12sp">
                                         <LinearLayout
@@ -99,6 +102,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="180sp"
                                     android:elevation="10sp"
+                                    android:backgroundTint="#d9f5c9"
                                     android:layout_margin="10sp"
                                     app:cardCornerRadius="12sp">
                                         <LinearLayout
@@ -131,6 +135,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="180sp"
                                     android:elevation="10sp"
+                                    android:backgroundTint="#d5eef7"
                                     android:layout_margin="10sp"
                                     app:cardCornerRadius="12sp">
                                         <LinearLayout
@@ -181,6 +186,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="180sp"
                                             android:elevation="10sp"
+                                            android:backgroundTint="#f7dddc"
                                             app:cardCornerRadius="12sp"
                                             android:layout_margin="10sp">
                                                 <LinearLayout
@@ -213,6 +219,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="180sp"
                                             android:elevation="10sp"
+                                            android:backgroundTint="#fafad4"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
                                                 <LinearLayout
@@ -245,6 +252,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="180sp"
                                             android:elevation="10sp"
+                                            android:backgroundTint="#d9f5c9"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
                                                 <LinearLayout
@@ -277,6 +285,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="180sp"
                                             android:elevation="10sp"
+                                            android:backgroundTint="#d5eef7"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
                                                 <LinearLayout
@@ -311,7 +320,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Alcohol Contacts"
+                            android:text="Addiction Relief Contacts"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold"/>
@@ -328,6 +337,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="110sp"
                                             android:elevation="10sp"
+                                            android:backgroundTint="#f7dddc"
                                             app:cardCornerRadius="12sp"
                                             android:layout_margin="10sp">
                                                 <LinearLayout
@@ -381,6 +391,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="110sp"
                                             android:elevation="10sp"
+                                            android:backgroundTint="#fafad4"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
                                                 <LinearLayout
@@ -434,6 +445,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="110sp"
                                             android:elevation="10sp"
+                                            android:backgroundTint="#d9f5c9"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
                                                 <LinearLayout
@@ -486,6 +498,7 @@
                                             android:layout_width="200sp"
                                             android:layout_height="110sp"
                                             android:elevation="10sp"
+                                            android:backgroundTint="#d5eef7"
                                             android:layout_margin="10sp"
                                             app:cardCornerRadius="12sp">
                                                 <LinearLayout
@@ -536,17 +549,6 @@
 
                                 </LinearLayout>
                         </HorizontalScrollView>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="500sp"
-                            android:layout_marginBottom="25dp">
-                                <fragment
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:id="@+id/map"
-                                    android:name="com.google.android.gms.maps.SupportMapFragment"/>
-
-                        </LinearLayout>
                 </LinearLayout>
         </ScrollView>
 </LinearLayout>
