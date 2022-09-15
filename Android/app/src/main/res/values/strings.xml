@@ -19,10 +19,10 @@
     <string name="in_ml_label">in ML</string>
     <string name="what_intake_label">What did you Intake?</string>
     <string name="percent_alcohol_label">% of Alcohol</string>
-    <string name="alcoholism_community"> Know more <a href="https://www.reddit.com/r/alcoholism">/r/alcoholism</a></string>
-    <string name="science_kindness_community"> Know more <a href="https://www.reddit.com/r/ScienceAndKindness">/r/scienceAndKindness</a></string>
-    <string name="stop_drinking_community"> Know more <a href="https://www.reddit.com/r/stopdrinking">/r/stopDrinking</a></string>
-    <string name="addiction_community"> Know more <a href="https://www.reddit.com/r/addiction">/r/addiction</a></string>
+    <string name="alcoholism_community"> Know more <a href="https://www.reddit.com/r/alcoholism">r/alcoholism</a></string>
+    <string name="science_kindness_community"> Know more <a href="https://www.reddit.com/r/ScienceAndKindness">r/scienceAndKindness</a></string>
+    <string name="stop_drinking_community"> Know more <a href="https://www.reddit.com/r/stopdrinking">r/stopDrinking</a></string>
+    <string name="addiction_community"> Know more <a href="https://www.reddit.com/r/addiction">r/addiction</a></string>
     <string name="standard_guide_article"> Read more <a href="https://www.health.gov.au/health-topics/alcohol/about-alcohol/standard-drinks-guide">standard drinks guide</a></string>
     <string name="whatIs_alcohol_article"> Read more <a href="https://www.health.gov.au/health-topics/alcohol/about-alcohol/what-is-alcohol">what is Alcohol?</a></string>
     <string name="laws_article"> Read more <a href="https://www.health.gov.au/health-topics/alcohol/about-alcohol/alcohol-laws-in-australia">Alcohol Laws in  Australia</a></string>
