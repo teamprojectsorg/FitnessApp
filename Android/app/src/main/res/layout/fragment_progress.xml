@@ -41,23 +41,23 @@
             android:outlineSpotShadowColor="@color/black"
             android:layout_height="300sp"/>
 
-        <TextView
-            android:layout_margin="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Displays the daily alcohol ingest"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+<!--        <TextView-->
+<!--            android:layout_margin="25dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Displays the daily alcohol ingest"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textStyle="bold"/>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.jjoe64.graphview.GraphView
-                android:id="@+id/graphViewDaily"
-                android:backgroundTint="#30ffffff"
-                android:outlineSpotShadowColor="@color/black"
-                android:layout_height="300sp"
-                android:layout_width="wrap_content"/>
+<!--            <com.jjoe64.graphview.GraphView-->
+<!--                android:id="@+id/graphViewDaily"-->
+<!--                android:backgroundTint="#30ffffff"-->
+<!--                android:outlineSpotShadowColor="@color/black"-->
+<!--                android:layout_height="300sp"-->
+<!--                android:layout_width="wrap_content"/>-->
         </LinearLayout>
 
         <GridLayout

@@ -33,11 +33,16 @@ import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.Series;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 
 public class ProgressFragment extends Fragment {
@@ -58,7 +63,7 @@ public class ProgressFragment extends Fragment {
         super.onCreate(savedInstanceState);
         viewModel = new CaptureViewModel();
         viewModel.getWeeklyCapture();
-        viewModel.getDailyCapture();
+        //viewModel.getDailyCapture();
 
         progressViewModel = new ProgressViewModel();
         progressViewModel.getLifetimeDailyConsumption();
@@ -84,7 +89,7 @@ public class ProgressFragment extends Fragment {
     private void initObservers(View v) {
         viewModel.liveGetDailyConsumption.observe(getViewLifecycleOwner(),
                 (it) -> {
-                    handelBarGraphObserver(it,viewBinding.graphViewDaily,"Daily Intake",Color.YELLOW);
+                    //handelBarGraphObserver(it,viewBinding.graphViewDaily,"Daily Intake",Color.YELLOW);
                 });
         viewModel.liveGetWeeklyConsumption.observe(getViewLifecycleOwner(),
                 (it) -> {
@@ -146,7 +151,8 @@ public class ProgressFragment extends Fragment {
     }
     void setData()
     {
-        CaptureResponseModel dailyResponse = viewModel.liveGetDailyConsumption.getValue().getData();
+        CaptureResponseModel dailyResponse = null;
+        //dailyResponse = viewModel.liveGetDailyConsumption.getValue().getData();
         CaptureResponseModel weeklyResponse = viewModel.liveGetWeeklyConsumption.getValue().getData();
         if(dailyResponse!=null)
         {
@@ -169,17 +175,14 @@ public class ProgressFragment extends Fragment {
 
         GraphView graphView = viewBinding.graphViewWeekly;
         graphView.addSeries(series);
-
-        LegendRenderer legendRenderer = graphView.getLegendRenderer();
-        legendRenderer.setVisible(true);
-        legendRenderer.setAlign(LegendRenderer.LegendAlign.TOP);
-        legendRenderer.setBackgroundColor(Color.TRANSPARENT);
     }
     void initLineGraph()
     {
         graphView = viewBinding.lineGraphView;
 
-        DataPoint[] dataPoints = getDataPoint(lifetimeData,false);
+        ArrayList<DataPoint> dataPointsList = getDataPoint(lifetimeData,false).dataSeries;
+        DataPoint[] dataPoints = new DataPoint[dataPointsList.size()];
+        dataPoints = dataPointsList.toArray(dataPoints);
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(dataPoints);
         series.setDataPointsRadius(10);
@@ -245,7 +248,10 @@ String[] getLineGraphDates(CaptureModel[] data)
         gridLabel.setVerticalAxisTitle("Alcohol Ingest");
         gridLabel.setHorizontalAxisTitleTextSize(40);
 
-        DataPoint[] dataPoints = getDataPoint(data,true);
+        ArrayList<DataPoint> dataPointsList = getDataPoint(data,true).dataSeries;
+        DataPoint[] dataPoints = new DataPoint[dataPointsList.size()];
+        dataPoints = dataPointsList.toArray(dataPoints);
+
         BarGraphSeries<DataPoint> series = new BarGraphSeries<DataPoint>(dataPoints);
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
@@ -253,6 +259,15 @@ String[] getLineGraphDates(CaptureModel[] data)
         series.setColor(barColorNumber);
         series.setTitle("Alcohol Ingest");
         graphView.addSeries(series);
+
+        ArrayList<DataPoint> blankDataPointList =
+                getDataPoint(data,true).blankSeries;
+        DataPoint[] blankDataPoints = new DataPoint[blankDataPointList.size()];
+        blankDataPoints = blankDataPointList.toArray(blankDataPoints);
+
+        BarGraphSeries<DataPoint> blankSeries = new BarGraphSeries<DataPoint>(blankDataPoints);
+        blankSeries.setSpacing(25);
+        graphView.addSeries(blankSeries);
 
         String[] dates = getDates(data);
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
@@ -263,12 +278,26 @@ String[] getLineGraphDates(CaptureModel[] data)
         graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
         graphView.getViewport().setMinX(0);
-        graphView.getViewport().setMaxX(Constants.BAR_COUNT-1);
+        graphView.getViewport().setMaxX(Constants.BAR_COUNT - 1);
         graphView.getViewport().setXAxisBoundsManual(true);
 
         graphView.setTitle(title);
         graphView.setTitleColor(Color.BLACK);
         graphView.setTitleTextSize(50);
+
+        if(title.charAt(0) == 'W')
+        {
+            setLegend(graphView,blankSeries);
+        }
+    }
+    void setLegend(GraphView graphView,Series blankSeries)
+    {
+        LegendRenderer legendRenderer =new CustomLegendRenderer(graphView,blankSeries);
+        legendRenderer.setVisible(true);
+        legendRenderer.setAlign(LegendRenderer.LegendAlign.TOP);
+        legendRenderer.setBackgroundColor(Color.TRANSPARENT);
+
+        graphView.setLegendRenderer(legendRenderer);
     }
     String[] getDates(CaptureModel[] data)
     {
@@ -282,20 +311,23 @@ String[] getLineGraphDates(CaptureModel[] data)
     }
 
 
-    private DataPoint[] getDataPoint(CaptureModel[] data,boolean forBar) {
-        ArrayList<DataPoint> dataPointsList = new ArrayList<>();
+    private DataPointSeries getDataPoint(CaptureModel[] data,boolean forBar) {
+        DataPointSeries dataPointsList = new DataPointSeries();
         for (int i = 0; i < data.length; i++) {
             double intake = Double.parseDouble(data[i].drinkIntake);
             intake = Math.round(intake);
             if(forBar) {
                 if (intake != 0) {
-                    dataPointsList.add(new DataPoint(i, intake));
+                    dataPointsList.dataSeries.add(new DataPoint(i, intake));
+                }
+                else
+                {
+                    dataPointsList.blankSeries.add(new DataPoint(i, 0));
                 }
             }
-            else {dataPointsList.add(new DataPoint(i, intake));}
+            else {dataPointsList.dataSeries.add(new DataPoint(i, intake));}
         }
-        DataPoint[] dataPointsArray = new DataPoint[dataPointsList.size()];
-        return dataPointsList.toArray(dataPointsArray);
+        return dataPointsList;
     }
 
     private DataPoint[] getStaticDataPoint() {
@@ -312,5 +344,10 @@ String[] getLineGraphDates(CaptureModel[] data)
                 new DataPoint(8, 4)
         };
         return dp;
+    }
+    class DataPointSeries
+    {
+        ArrayList<DataPoint> dataSeries = new ArrayList<>();
+        ArrayList<DataPoint> blankSeries = new ArrayList<>();
     }
 }
